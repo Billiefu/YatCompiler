@@ -31,8 +31,8 @@ public class Txtpro {
      */
     public static void Output(String threshold, String textable) throws IOException {
         // 文件路径配置（生产环境）
-        String filename = "c:" + File.separator + "Java" + File.separator + "data.txt";
-        // String filename = "src" + File.separator + "data.txt";
+        // String filename = "c:" + File.separator + "Java" + File.separator + "data.txt";
+        String filename = "src" + File.separator + "data.txt";
         
         File file = new File(filename);
         // 自动创建缺失的父目录
@@ -58,8 +58,8 @@ public class Txtpro {
      */
     public static String Input() throws IOException {
         // 文件路径配置需与写入方法保持一致
-        String filename = "c:" + File.separator + "Java" + File.separator + "data.txt";
-        // String filename = "src" + File.separator + "data.txt";
+        // String filename = "c:" + File.separator + "Java" + File.separator + "data.txt";
+        String filename = "src" + File.separator + "data.txt";
         
         File file = new File(filename);
         // 文件不存在时初始化默认数据
