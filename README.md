@@ -8,6 +8,7 @@
 
 * Java 程序设计语言编码规范
 * Lab01 计算个人所得税 PersonalTax
+* Lab02 议程管理系统 Agenda
 
 ## 致谢
 
