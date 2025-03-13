@@ -8,71 +8,73 @@ import java.io.Reader;
 import java.io.Writer;
 
 /**
- * 用于处理文本文件(.txt)数据存储的工具类
+ * 文本文件处理器，负责数据的持久化存储和读取操作.
  * <p>
- * 提供文本文件的写入和读取能力，支持自动创建目录结构，
- * 当读取不存在的文件时会自动初始化默认数据文件
+ * 实现将结构化数据输出到.txt文件，并提供从.txt文件加载数据的功能。
+ * 自动处理文件路径创建和默认文件初始化操作。
  * 
  * @author 傅祉珏
  * @created 2025年2月27日
- * @lastModified 2025年3月7日
+ * @updated 2025年3月7日
  */
 public class Txtpro {
     
     /**
-     * 将数据写入文本文件
+     * 将数据写入文本文件（UTF-8编码）
      * <p>
-     * 该方法将阈值参数和文本内容按顺序写入目标文件，若文件路径不存在会自动创建父目录。
-     * 文件存储路径默认设置为C盘Java目录，开发环境可切换为src目录（需注释当前路径配置）
-     *
-     * @param threshold 个人所得税起征点，会写入文件的第一行
-     * @param textable  税率表，会写入文件的后续行
-     * @throws IOException 当文件写入失败或路径创建失败时抛出
+     * 自动创建不存在的父级目录，使用系统默认换行符
+     * 
+     * @param threshold 阈值参数，通常作为文件首行存储
+     * @param textable 结构化文本内容，支持多行数据
+     * @throws IOException 当文件创建失败或写入错误时抛出
      */
     public static void Output(String threshold, String textable) throws IOException {
-        // 文件路径配置（生产环境）
-        // String filename = "c:" + File.separator + "Java" + File.separator + "data.txt";
+    	// 文件路径配置
+    	// String filename = "c:" + File.separator + "Java" + File.separator + "data.txt";
         String filename = "src" + File.separator + "data.txt";
         
         File file = new File(filename);
-        // 自动创建缺失的父目录
+        // 自动创建缺失的父级目录
         if(!file.getParentFile().exists()) {
             file.getParentFile().mkdirs();
         }
         
-        // 使用字符流写入文件内容
+        // 使用try-with-resources自动管理资源
         try (Writer output = new FileWriter(file)) {
-            output.write(threshold + "\r\n");
-            output.write(textable);
+            output.write(threshold + "\r\n");  // 写入阈值参数
+            output.write(textable);            // 写入主体内容
+            output.close();
         }
     }
     
     /**
-     * 从文本文件读取数据
+     * 从文本文件加载数据内容
      * <p>
-     * 该方法会读取指定路径的文本文件内容。当文件不存在时，会自动初始化包含默认值的文件，
-     * 并返回"1000\r\n11000000000, 0\r\n"格式的默认数据。
-     *
-     * @return 文件内容字符串，包含个人所得税起征点及税率表
+     * 当目标文件不存在时，自动初始化默认数据文件：
+     * 阈值1000，预设电话号码11000000000与初始状态0
+     * 
+     * @return 文件内容的字符串形式，保留原始换行格式
      * @throws IOException 当文件读取失败时抛出
      */
     public static String Input() throws IOException {
-        // 文件路径配置需与写入方法保持一致
-        // String filename = "c:" + File.separator + "Java" + File.separator + "data.txt";
+    	// 文件路径配置
+    	// String filename = "c:" + File.separator + "Java" + File.separator + "data.txt";
         String filename = "src" + File.separator + "data.txt";
         
         File file = new File(filename);
-        // 文件不存在时初始化默认数据
+        // 文件不存在时执行初始化操作
         if(!file.getParentFile().exists()) {
             Output("1000", "11000000000, 0\r\n");
             return "1000\r\n11000000000, 0\r\n";
         }
         
-        // 使用字符流读取文件内容
+        // 使用字符数组缓冲区读取文件内容
         try (Reader input = new FileReader(file)) {
-            char data[] = new char[10000000];
+            char data[] = new char[10_000_000];  // 10MB字符缓冲区
             int len = input.read(data);
-            return new String(data, 0, len);
+            input.close();
+            
+            return new String(data, 0, len);  // 转换有效数据为字符串
         }
     }
 }
