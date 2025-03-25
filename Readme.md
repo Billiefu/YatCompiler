@@ -9,6 +9,7 @@
 * Java 程序设计语言编码规范
 * Lab01 计算个人所得税 PersonalTax
 * Lab02 议程管理系统 Agenda
+* Lab05 Oberon-0 逆向工程工具 ROSE
 
 更多实验内容将基于课程进度给出其设计及实现
 
