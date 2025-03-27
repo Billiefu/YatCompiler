@@ -15,7 +15,7 @@ import agenda.dal.AgendaIdGenerator;
  * 该类采用单例模式，提供会议的添加、删除、修改和查询功能。
  * 
  * @author 傅祉珏
- * @created 2025年3月13日
+ * @created 2025年3月15日
  * @lastUpdated 2025年3月27日
  */
 public class AgendaManagement {
@@ -121,8 +121,13 @@ public class AgendaManagement {
         for (Agenda other : this.agendas) {
             // 检查会议时间是否冲突
             if (other.GetOrganizer().matches(agenda.GetOrganizer()) &&
-                (other.GetStartTime() <= agenda.GetEndTime() || other.GetEndTime() >= agenda.GetStartTime())) {
-                AgendaIdGenerator.getInstance().ResetId();
+                ((agenda.GetEndTime() >= other.GetStartTime() && agenda.GetEndTime() <= other.GetEndTime()) || 
+                (agenda.GetStartTime() <= other.GetEndTime() && agenda.GetStartTime() >= other.GetStartTime()))) {
+                System.out.println(agenda.GetStartTime());
+                System.out.println(agenda.GetEndTime());
+            	System.out.println(other.GetStartTime());
+                System.out.println(other.GetEndTime());
+            	AgendaIdGenerator.getInstance().ResetId();
                 return false;
             }
         }
@@ -186,7 +191,7 @@ public class AgendaManagement {
 			}
 			
 			// 遍历参会者列表，检查是否匹配
-			Set<User> attendees = new TreeSet<User>();
+			Set<User> attendees = agenda.GetAttendees();
 			for(User attendee : attendees) {
 				if(attendee.GetName().matches(name)) {
 					agendas.add(agenda);

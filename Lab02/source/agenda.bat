@@ -1,5 +1,4 @@
 @echo off
-title My Java Program
-echo Running Java Program...
+title agenda.jar
 java -jar agenda.jar
 pause

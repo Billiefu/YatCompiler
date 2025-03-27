@@ -16,8 +16,14 @@ public class AgendaService {
      * @throws Exception 可能抛出的异常
      */
     public static void main(String args[]) throws Exception {
-        // 调用 IOProcess 类的 Home 方法，启动程序
-        IOProcess.Home();
+    	// 输出系统启动信息
+        System.out.println("Agenda Management System Started. Enter 'quit' to exit.");
+        
+        // 无限循环，持续监听用户输入
+        while (true) {
+        	System.out.print("$ "); // 显示命令行提示符
+        	IOProcess.Process();
+        }
     }
 }
 

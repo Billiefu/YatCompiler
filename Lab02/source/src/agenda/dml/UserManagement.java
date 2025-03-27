@@ -14,7 +14,7 @@ import agenda.dal.UserIO;
  * 该类采用单例模式，提供用户的添加、删除、修改和查询功能。
  * 
  * @author 傅祉珏
- * @created 2025年3月13日
+ * @created 2025年3月15日
  * @lastUpdated 2025年3月27日
  */
 public class UserManagement {
