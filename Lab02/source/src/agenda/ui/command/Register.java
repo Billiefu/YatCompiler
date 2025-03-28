@@ -5,13 +5,13 @@ import agenda.bll.UserRegister;
 /**
  * Register类
  * <p>
- * 该类用于注册新用户。用户提供用户名和密码，调用UserRegister类的AddUser方法进行用户注册。
- * 根据注册结果，输出不同的提示信息。
- * </p>
+ * 该类用于注册新用户
+ * 用户提供用户名和密码，调用UserRegister类的AddUser方法进行用户注册
+ * 根据注册结果，输出不同的提示信息
  * 
  * @author 傅祉珏
  * @create 2025年3月27日
- * @lastUpdated 2025年3月27日
+ * @lastUpdated 2025年3月28日
  */
 public class Register implements Other {
 
@@ -31,7 +31,7 @@ public class Register implements Other {
         }
         
         // 调用 UserRegister 类进行用户注册
-        int result = UserRegister.AddUser(params[0], params[1]);
+        int result = UserRegister.addUser(params[0], params[1]);
         
         // 根据注册结果进行处理
         switch (result) {

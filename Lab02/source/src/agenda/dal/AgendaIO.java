@@ -12,12 +12,13 @@ import java.util.Set;
 import agenda.bll.Agenda;
 
 /**
- * AgendaIO 类
+ * 会议IO类
+ * <p>
  * 该类负责会议的持久化存储和读取操作
  * 
  * @author 傅祉珏
- * @created 2025年3月13日
- * @lastUpdated 2025年3月27日
+ * @created 2025年3月6日
+ * @lastUpdated 2025年3月28日
  */
 public class AgendaIO {
 
@@ -51,12 +52,12 @@ public class AgendaIO {
      * @param agenda 要保存的会议对象
      * @throws IOException 发生文件读写错误时抛出异常
      */
-    public static void Output(Agenda agenda) throws IOException {
+    public static void output(Agenda agenda) throws IOException {
         // 定义会议数据存储的文件路径
         String filename = "c:" + File.separator + "Java" + File.separator + "agenda" + File.separator;
 
         // 使用会议ID来创建文件名
-        filename += (agenda.GetId()) + ".txt";
+        filename += (agenda.getId()) + ".txt";
 
         // 创建文件对象
         File file = new File(filename);
@@ -69,24 +70,24 @@ public class AgendaIO {
         // 使用 try-with-resources 语法，自动关闭 FileWriter
         try (Writer output = new FileWriter(file)) {
             // 写入会议ID
-            output.write(agenda.GetId() + "\r\n");
+            output.write(agenda.getId() + "\r\n");
 
             // 写入会议主持人
-            output.write(agenda.GetOrganizer() + "\r\n");
+            output.write(agenda.getOrganizer() + "\r\n");
 
             // 写入所有与会者的格式化信息（使用逗号分隔）
-            for (String attendee : agenda.GetAttendeesFormat()) {
+            for (String attendee : agenda.getAttendeesFormat()) {
                 output.write(attendee + ",");
             }
 
             // 写入会议开始时间
-            output.write("\r\n" + agenda.GetStartTimeFormat() + "\r\n");
+            output.write("\r\n" + agenda.getStartTimeFormat() + "\r\n");
 
             // 写入会议结束时间
-            output.write(agenda.GetEndTimeFormat() + "\r\n");
+            output.write(agenda.getEndTimeFormat() + "\r\n");
 
             // 写入会议标签
-            output.write(agenda.GetLabel() + "\r\n");
+            output.write(agenda.getLabel() + "\r\n");
 
             // 关闭输出流
             output.close();
@@ -99,7 +100,7 @@ public class AgendaIO {
      * @return 读取到的会议数据集合
      * @throws IOException 发生文件读写错误时抛出异常
      */
-    public static Set<String> Input() throws IOException {
+    public static Set<String> input() throws IOException {
         // 定义会议数据存储的目录路径
         String filename = "c:" + File.separator + "Java" + File.separator + "agenda" + File.separator;
 
@@ -107,7 +108,7 @@ public class AgendaIO {
         Set<String> agendas = new HashSet<String>();
 
         // 遍历所有会议ID，从1开始读取每个会议数据
-        for (int i = 1; i <= AgendaIdGenerator.getInstance().GetId(); i++) {
+        for (int i = 1; i <= AgendaIdGenerator.getInstance().getId(); i++) {
             // 创建文件对象，文件名为会议ID对应的文件
             File file = new File(filename + i + ".txt");
 
@@ -126,10 +127,10 @@ public class AgendaIO {
 
             // 使用 try-with-resources 语法，自动关闭 FileReader
             try (Reader input = new FileReader(file)) {
-                char data[] = new char[10000000]; // 预分配一个大数组存储读取的数据
-                int len = input.read(data); // 读取数据长度
-                str = new String(data, 0, len); // 转换为字符串
-                input.close(); // 关闭流（可省略，因为 try-with-resources 会自动关闭）
+                char data[] = new char[10000000]; 		// 预分配一个大数组存储读取的数据
+                int len = input.read(data); 			// 读取数据长度
+                str = new String(data, 0, len); 		// 转换为字符串
+                input.close();							// 关闭流
             } catch (Exception e) {
                 // 捕获异常后，继续处理下一个文件
             }
@@ -143,4 +144,3 @@ public class AgendaIO {
     }
 
 }
-

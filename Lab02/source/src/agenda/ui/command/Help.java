@@ -1,14 +1,13 @@
 package agenda.ui.command;
 
 /**
- * Help类
+ * help类
  * <p>
  * 该类用于显示所有可用命令的帮助信息。
- * </p>
  * 
  * @author 傅祉珏
  * @create 2025年3月27日
- * @lastUpdated 2025年3月27日
+ * @lastUpdated 2025年3月28日
  */
 public class Help implements Other {
 
@@ -78,6 +77,11 @@ public class Help implements Other {
         System.out.println("DeleteAttendee - Remove a attendee from a specified agenda");
         System.out.println("Usage - deleteattendee [userName] [password] [agendaID] [attendee]");
         System.out.println("");
+        
+        // 从指定会议中转移组织者
+        System.out.println("ChangeOrganizer - Change an organizer from a specified agenda");
+        System.out.println("Usage - changeorganizer [userName] [password] [agendaID] [organizer]");
+        System.out.println("");
 
         // 批量执行命令
         System.out.println("Batch - Execute a batch of commands from a text file");
@@ -96,4 +100,3 @@ public class Help implements Other {
     }
 
 }
-

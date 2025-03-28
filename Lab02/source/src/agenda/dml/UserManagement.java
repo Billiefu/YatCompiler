@@ -15,23 +15,25 @@ import agenda.dal.UserIO;
  * 
  * @author 傅祉珏
  * @created 2025年3月15日
- * @lastUpdated 2025年3月27日
+ * @lastUpdated 2025年3月28日
  */
 public class UserManagement {
     
-    // 单例模式实例，确保整个系统中只有一个 UserManagement 对象
+	// 单例实例（饿汉式）
     private static final UserManagement Instance = new UserManagement();
     
     // 存储所有用户的集合，使用 TreeSet 以保持用户排序
     private Set<User> users = new TreeSet<User>();
 
     /**
-     * 私有构造方法，初始化用户管理系统，从存储中读取用户数据。
+     * 私有构造方法（单例模式）
+     * <p>
+     * 初始化用户管理系统，从存储中读取用户数据。
      */
     private UserManagement() {
         try {
             // 从文件中读取用户数据
-            String users = UserIO.Input();
+            String users = UserIO.input();
 
             // 按行拆分用户数据
             String regexa = "\r\n";
@@ -69,7 +71,7 @@ public class UserManagement {
      * @throws IOException 可能抛出的异常
      */
     private void SaveUsers() throws IOException {
-        UserIO.Output(this.users);
+        UserIO.output(this.users);
     }
 
     /**
@@ -84,13 +86,13 @@ public class UserManagement {
      */
     public int AddUser(User user) throws IOException {
         // 判断用户名是否为空
-        if (user.GetName() == null || user.GetName().matches("")) {
+        if (user.getName() == null || user.getName().matches("")) {
             return -1;
         }
         
         // 检查用户名是否已存在
         for (User other : this.users) {
-            if (other.SameName(user.GetName())) {
+            if (other.sameName(user.getName())) {
                 return -2;
             }
         }
@@ -111,7 +113,7 @@ public class UserManagement {
         // 记录待删除用户
         Set<User> toDelete = new TreeSet<User>();
         for (User user : this.users) {
-            if (user.GetName().matches(name)) {
+            if (user.getName().matches(name)) {
                 toDelete.add(user);
             }
         }
@@ -129,7 +131,7 @@ public class UserManagement {
      */
     public User SearchUser(String name) {
         for (User user : this.users) {
-            if (user.GetName().matches(name)) {
+            if (user.getName().matches(name)) {
                 return user;
             }
         }
@@ -152,13 +154,13 @@ public class UserManagement {
         
         // 检查新用户名是否已存在
         for (User user : this.users) {
-            if (user.GetName().matches(newname)) {
+            if (user.getName().matches(newname)) {
                 return false;
             }
         }
 
         // 更新用户名并保存
-        origin.SetName(newname);
+        origin.setName(newname);
         this.SaveUsers();
         return true;
     }
@@ -172,10 +174,11 @@ public class UserManagement {
      */
     public void ChangeCode(String name, String code) throws IOException {
         for (User user : this.users) {
-            if (user.GetName().matches(name)) {
-                user.SetCode(code);
+            if (user.getName().matches(name)) {
+                user.setCode(code);
             }
         }
         this.SaveUsers();
     }
+    
 }

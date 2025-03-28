@@ -4,22 +4,20 @@ import agenda.bll.UserRegister;
 import agenda.bll.user.User;
 
 /**
- * Cancel类
+ * cancel类
  * <p>
  * 该类用于执行用户注销操作，删除指定用户账户。
- * </p>
  * 
  * @author 傅祉珏
  * @create 2025年3月27日
- * @lastUpdated 2025年3月27日
+ * @lastUpdated 2025年3月28日
  */
-public class Cancel implements Logger {
+public class Cancel implements Loger {
 
     /**
      * 执行用户注销
      * <p>
      * 该方法验证用户身份，并删除指定用户名的账户。
-     * </p>
      * 
      * @param params 命令参数，包括用户名和密码
      * @throws Exception 可能抛出的异常
@@ -37,11 +35,10 @@ public class Cancel implements Logger {
         if (user == null) return;
 
         // 调用 UserRegister 删除用户
-        UserRegister.DeleteUser(params[0]);
+        UserRegister.deleteUser(params[0]);
 
         // 输出成功信息
         System.out.println("Success: User canceled");
     }
 
 }
-

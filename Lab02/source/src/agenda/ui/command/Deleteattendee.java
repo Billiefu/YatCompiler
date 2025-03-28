@@ -4,16 +4,15 @@ import agenda.bll.user.Manager;
 import agenda.bll.user.User;
 
 /**
- * Deleteattendee类
+ * deleteattendee类
  * <p>
  * 该类用于删除会议的指定与会人。
- * </p>
  * 
  * @author 傅祉珏
  * @create 2025年3月27日
- * @lastUpdated 2025年3月27日
+ * @lastUpdated 2025年3月28日
  */
-public class Deleteattendee implements Logger {
+public class Deleteattendee implements Loger {
 
     /**
      * 执行删除与会人的命令
@@ -35,9 +34,9 @@ public class Deleteattendee implements Logger {
         
         // 将用户对象转换为Manager类型，并执行删除与会人操作
         Manager manager = (Manager) user;
-        manager.DeleteAttendee(Long.parseLong(params[2]), params[3]);
+        boolean success = manager.deleteAttendee(Long.parseLong(params[2]), params[3]);
         
-        System.out.println("Success: Attendee deleted");
+        System.out.println(success ? "Success: Attendee deleted" : "Error: Attendee not found");
     }
 
 }

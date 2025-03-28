@@ -8,7 +8,7 @@ package agenda.ui.command;
  * 
  * @author 傅祉珏
  * @create 2025年3月27日
- * @lastUpdated 2025年3月27日
+ * @lastUpdated 2025年3月28日
  */
 public class Quit implements Other {
 

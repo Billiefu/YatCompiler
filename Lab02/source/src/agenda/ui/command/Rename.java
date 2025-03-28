@@ -6,14 +6,15 @@ import agenda.bll.user.User;
 /**
  * Rename类
  * <p>
- * 该类用于修改用户的用户名。用户需要提供当前用户名和密码以及新的用户名。如果验证通过并且新的用户名没有被占用，则修改用户名。
- * </p>
+ * 该类用于修改用户的用户名。
+ * 用户需要提供当前用户名和密码以及新的用户名。
+ * 如果验证通过并且新的用户名没有被占用，则修改用户名。
  * 
  * @author 傅祉珏
  * @create 2025年3月27日
- * @lastUpdated 2025年3月27日
+ * @lastUpdated 2025年3月28日
  */
-public class Rename implements Logger {
+public class Rename implements Loger {
 
     /**
      * 执行用户重命名的命令
@@ -38,7 +39,7 @@ public class Rename implements Logger {
         Manager manager = (Manager) user;
         
         // 修改用户名，如果修改成功，输出成功信息；否则输出错误信息
-        if (manager.ChangeName(params[2])) {
+        if (manager.changeName(params[2])) {
             System.out.println("Success: User Renamed");
         } else {
             System.out.println("Error: Username already exists");

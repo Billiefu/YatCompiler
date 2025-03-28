@@ -21,7 +21,7 @@ import agenda.dml.UserManagement;
  * 
  * @author 傅祉珏
  * @created 2025年3月13日
- * @lastUpdated 2025年3月27日
+ * @lastUpdated 2025年3月28日
  */
 public class Manager extends User {
     
@@ -51,7 +51,7 @@ public class Manager extends User {
     public Manager(String name) {
         super(UserManagement.getInstance().SearchUser(name));
         AgendaManagement agendamanagement = AgendaManagement.getInstance();
-        this.agendas = agendamanagement.SearchAgenda(GetName());
+        this.agendas = agendamanagement.SearchAgenda(getName());
     }
 
     /**
@@ -61,8 +61,8 @@ public class Manager extends User {
      * @return 是否修改成功
      * @throws IOException 可能抛出的异常
      */
-    public boolean ChangeName(String name) throws IOException {
-        return UserManagement.getInstance().ChangeName(this.GetName(), name);
+    public boolean changeName(String name) throws IOException {
+        return UserManagement.getInstance().ChangeName(this.getName(), name);
     }
 
     /**
@@ -71,8 +71,8 @@ public class Manager extends User {
      * @param code 新密码
      * @throws IOException 可能抛出的异常
      */
-    public void ChangeCode(String code) throws IOException {
-        UserManagement.getInstance().ChangeCode(this.GetName(), code);
+    public void changeCode(String code) throws IOException {
+        UserManagement.getInstance().ChangeCode(this.getName(), code);
     }
 
     /**
@@ -80,7 +80,7 @@ public class Manager extends User {
      *
      * @return 会议集合
      */
-    public Set<Agenda> GetAgenda() {
+    public Set<Agenda> getAgenda() {
         return this.agendas;
     }
 
@@ -89,15 +89,15 @@ public class Manager extends User {
      *
      * @return 会议信息集合，每个元素包含会议的详细信息
      */
-    public Set<String> GetAgendaFormat() {
+    public Set<String> getAgendaFormat() {
         Set<String> agendas = new TreeSet<String>();
         for (Agenda agenda : this.agendas) {
             // 会议信息按格式存储
-            agendas.add(agenda.GetId() + "\t" 
-                      + agenda.GetOrganizer() + "\t"
-                      + agenda.GetStartTime() + "\t" 
-                      + agenda.GetEndTime() + "\t" 
-                      + agenda.GetLabel());
+            agendas.add(agenda.getId() + "\t" 
+                      + agenda.getOrganizer() + "\t"
+                      + agenda.getStartTime() + "\t" 
+                      + agenda.getEndTime() + "\t" 
+                      + agenda.getLabel());
         }
         return agendas;
     }
@@ -108,9 +108,9 @@ public class Manager extends User {
      * @param id 会议 ID
      * @return 找到的会议对象，如果不存在则返回 null
      */
-    public Agenda GetAgenda(long id) {
+    public Agenda getAgenda(long id) {
         for (Agenda agenda : this.agendas) {
-            if (agenda.GetId() == id) {
+            if (agenda.getId() == id) {
                 return agenda;
             }
         }
@@ -127,16 +127,16 @@ public class Manager extends User {
      * @return 是否创建成功
      * @throws IOException 可能抛出的异常
      */
-    public boolean CreateAgenda(String attendee, String start_time, String end_time, String label) throws IOException {
+    public boolean createAgenda(String attendee, String start_time, String end_time, String label) throws IOException {
         // 创建参与者集合
         Set<User> attendees = new TreeSet<User>();
         attendees.add(UserManagement.getInstance().SearchUser(attendee));
 
         // 创建新的会议对象
-        Agenda agenda = new Agenda(new User(this.GetName(), this.GetCode()), attendees, start_time, end_time, label);
+        Agenda agenda = new Agenda(new User(this.getName(), this.getCode()), attendees, start_time, end_time, label);
         
         // 设置会议 ID
-        agenda.SetId();
+        agenda.setId();
 
         // 获取会议管理实例，并添加会议
         AgendaManagement agendamanagement = AgendaManagement.getInstance();
@@ -155,8 +155,8 @@ public class Manager extends User {
      * @param id 会议 ID
      * @throws IOException 可能抛出的异常
      */
-    public void DeleteAgenda(long id) throws IOException {
-        AgendaManagement.getInstance().DeleteAgenda(this.GetName(), id);
+    public void deleteAgenda(long id) throws IOException {
+        AgendaManagement.getInstance().DeleteAgenda(this.getName(), id);
     }
 
     /**
@@ -164,9 +164,9 @@ public class Manager extends User {
      *
      * @throws IOException 可能抛出的异常
      */
-    public void ClearAgenda() throws IOException {
+    public void clearAgenda() throws IOException {
         AgendaManagement agendamanagement = AgendaManagement.getInstance();
-        agendamanagement.ClearAgenda(this.GetName());
+        agendamanagement.ClearAgenda(this.getName());
         this.agendas = new HashSet<Agenda>(); // 重新初始化会议集合
     }
 
@@ -177,7 +177,7 @@ public class Manager extends User {
      * @param end_time_format 结束时间（字符串格式）
      * @return 符合时间范围的会议集合
      */
-    public Set<Agenda> SearchAgenda(String start_time_format, String end_time_format) {
+    public Set<Agenda> searchAgenda(String start_time_format, String end_time_format) {
         // 定义时间格式解析器
         DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(Locale.CHINA);
         
@@ -188,7 +188,7 @@ public class Manager extends User {
                 .atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli();
 
         // 搜索符合时间范围的会议
-        return AgendaManagement.getInstance().SearchAgenda(this.GetName(), start_time, end_time);
+        return AgendaManagement.getInstance().SearchAgenda(this.getName(), start_time, end_time);
     }
 
     /**
@@ -197,8 +197,8 @@ public class Manager extends User {
      * @param id 会议 ID
      * @return 符合 ID 的会议集合
      */
-    public Set<Agenda> SearchAgenda(long id) {
-        return AgendaManagement.getInstance().SearchAgenda(this.GetName(), id);
+    public Set<Agenda> searchAgenda(long id) {
+        return AgendaManagement.getInstance().SearchAgenda(this.getName(), id);
     }
 
     /**
@@ -206,8 +206,8 @@ public class Manager extends User {
      *
      * @return 会议集合
      */
-    public Set<Agenda> SearchAgenda() {
-        return AgendaManagement.getInstance().SearchAgenda(this.GetName());
+    public Set<Agenda> searchAgenda() {
+        return AgendaManagement.getInstance().SearchAgenda(this.getName());
     }
 
     /**
@@ -218,8 +218,12 @@ public class Manager extends User {
      * @return 操作结果状态
      * @throws IOException 可能抛出的异常
      */
-    public int AddAttendee(long id, String name) throws IOException {
-        return AgendaManagement.getInstance().AddAttendee(this.GetName(), id, UserManagement.getInstance().SearchUser(name));
+    public int addAttendee(long id, String name) throws IOException {
+    	User attendee = UserManagement.getInstance().SearchUser(name);
+    	if(attendee == null) {
+    		return -3;
+    	}
+        return AgendaManagement.getInstance().AddAttendee(this.getName(), id, attendee);
     }
 
     /**
@@ -229,7 +233,23 @@ public class Manager extends User {
      * @param name 参与者用户名
      * @throws IOException 可能抛出的异常
      */
-    public void DeleteAttendee(long id, String name) throws IOException {
-        AgendaManagement.getInstance().DeleteAttendee(this.GetName(), id, name);
+    public boolean deleteAttendee(long id, String name) throws IOException {
+        return AgendaManagement.getInstance().DeleteAttendee(this.getName(), id, name);
     }
+    
+    /**
+     * 更换指定 ID 的会议的组织者
+     *
+     * @param id 会议 ID
+     * @param name 新组织者用户名
+     * @throws IOException 可能抛出的异常
+     */
+    public int changeOrganizer(long id, String name) throws IOException {
+    	User attendee = UserManagement.getInstance().SearchUser(name);
+    	if(attendee == null) {
+    		return -2;
+    	}
+    	return AgendaManagement.getInstance().ChangeOrganizer(this.getName(), id, name);
+    }
+    
 }

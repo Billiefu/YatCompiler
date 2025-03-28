@@ -16,20 +16,23 @@ import agenda.dml.AgendaManagement;
  * 该类用于抽象化表示会议日程，并实现 Comparable 接口进行比较
  * 
  * @author 傅祉珏
- * @created 2025年3月13日
- * @lastUpdated 2025年3月27日
+ * @created 2025年3月6日
+ * @lastUpdated 2025年3月28日
  */
 public class Agenda implements Comparable<Agenda> {
     
-    private long id; // 会议ID
-    private User organizer; // 组织者
-    private Set<User> attendees; // 参会者集合
-    private LocalDateTime start_time; // 会议开始时间
-    private LocalDateTime end_time; // 会议结束时间
-    private String label; // 会议标签
+    private long id; 						 // 会议ID
+    private User organizer; 				 // 组织者
+    private Set<User> attendees;			 // 参会者集合
+    private LocalDateTime start_time; 		 // 会议开始时间
+    private LocalDateTime end_time;			 // 会议结束时间
+    private String label; 					 // 会议标签
 
     /**
-     * 会议构造方法（无 ID 版本，ID 需后续赋值）
+     * 会议构造方法
+     * <p>
+     * 该方法用于构造一个全新的会议
+     * 会议ID会在成功添加进系统后再赋值
      * 
      * @param organizer 会议组织者
      * @param attendees 参会人员集合
@@ -39,16 +42,19 @@ public class Agenda implements Comparable<Agenda> {
      */
     public Agenda(User organizer, Set<User> attendees, String start_time, String end_time, String label) {
         DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(Locale.CHINA);
-        this.id = -1; // 会议 ID 设为默认值 -1
+        this.id = -1;	// 会议 ID 设为默认值 -1
         this.organizer = organizer;
         this.attendees = attendees;
-        this.start_time = LocalDateTime.parse(start_time, formatter); // 解析时间字符串
+        this.start_time = LocalDateTime.parse(start_time, formatter);	// 解析时间字符串
         this.end_time = LocalDateTime.parse(end_time, formatter);
         this.label = label;
     }
 
     /**
-     * 会议构造方法（带 ID 版本）
+     * 会议构造方法
+     * <p>
+     * 该方法用于构造一个已存在的会议
+     * 已存在的会议已经赋予了会议ID，需一同传入至该会议当中
      * 
      * @param id 会议ID
      * @param organizer 会议组织者
@@ -62,15 +68,17 @@ public class Agenda implements Comparable<Agenda> {
         this.id = id;
         this.organizer = organizer;
         this.attendees = attendees;
-        this.start_time = LocalDateTime.parse(start_time, formatter); // 解析时间字符串
+        this.start_time = LocalDateTime.parse(start_time, formatter);	// 解析时间字符串
         this.end_time = LocalDateTime.parse(end_time, formatter);
         this.label = label;
     }
 
     /**
-     * 设置会议 ID（从 AgendaManagement 获取新的 ID）
+     * 设置会议 ID
+     * <p>
+     * 从会议管理类中获取新的 ID
      */
-    public void SetId() {
+    public void setId() {
         this.id = AgendaManagement.getInstance().SetAgendaID();
     }
 
@@ -79,7 +87,7 @@ public class Agenda implements Comparable<Agenda> {
      * 
      * @return 会议 ID
      */
-    public long GetId() {
+    public long getId() {
         return this.id;
     }
 
@@ -88,8 +96,8 @@ public class Agenda implements Comparable<Agenda> {
      * 
      * @return 组织者姓名
      */
-    public String GetOrganizer() {
-        return this.organizer.GetName();
+    public String getOrganizer() {
+        return this.organizer.getName();
     }
     
     /**
@@ -97,7 +105,7 @@ public class Agenda implements Comparable<Agenda> {
      * 
      * @return 参会者集合
      */
-    public Set<User> GetAttendees() {
+    public Set<User> getAttendees() {
         return this.attendees;
     }
 
@@ -106,10 +114,10 @@ public class Agenda implements Comparable<Agenda> {
      * 
      * @return 参会者姓名集合
      */
-    public Set<String> GetAttendeesFormat() {
+    public Set<String> getAttendeesFormat() {
         Set<String> attendees = new HashSet<String>();
         for (User user : this.attendees) {
-            attendees.add(user.GetName());
+            attendees.add(user.getName());
         }
         return attendees;
     }
@@ -119,7 +127,7 @@ public class Agenda implements Comparable<Agenda> {
      * 
      * @return 会议开始时间的时间戳
      */
-    public long GetStartTime() {
+    public long getStartTime() {
         return this.start_time.atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli();
     }
 
@@ -128,7 +136,7 @@ public class Agenda implements Comparable<Agenda> {
      * 
      * @return 会议开始时间（格式化字符串）
      */
-    public String GetStartTimeFormat() {
+    public String getStartTimeFormat() {
         DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(Locale.CHINA);
         return formatter.format(this.start_time);
     }
@@ -138,7 +146,7 @@ public class Agenda implements Comparable<Agenda> {
      * 
      * @return 会议结束时间的时间戳
      */
-    public long GetEndTime() {
+    public long getEndTime() {
         return this.end_time.atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli();
     }
 
@@ -147,7 +155,7 @@ public class Agenda implements Comparable<Agenda> {
      * 
      * @return 会议结束时间（格式化字符串）
      */
-    public String GetEndTimeFormat() {
+    public String getEndTimeFormat() {
         DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(Locale.CHINA);
         return formatter.format(this.end_time);
     }
@@ -157,7 +165,7 @@ public class Agenda implements Comparable<Agenda> {
      * 
      * @return 会议标签
      */
-    public String GetLabel() {
+    public String getLabel() {
         return this.label;
     }
 
@@ -166,17 +174,21 @@ public class Agenda implements Comparable<Agenda> {
      * 
      * @param organizer 新组织者
      */
-    public void ChangeOrganizer(User organizer) {
+    public void changeOrganizer(User organizer) {
         User FormerOrganizer = this.organizer;
         // 在参会者列表中查找新组织者
         for (User user : this.attendees) {
-            if (user.GetName().equals(organizer.GetName())) {
+            if (user.getName().equals(organizer.getName())) {
                 this.organizer = user;
                 break;
             }
         }
+        
         // 原组织者加入参会者列表
         this.attendees.add(FormerOrganizer);
+        
+        // 新组织者离开参会者列表
+        this.attendees.remove(organizer);
     }
 
     /**
@@ -184,7 +196,7 @@ public class Agenda implements Comparable<Agenda> {
      * 
      * @param user 要添加的参会者
      */
-    public void AddAttendee(User user) {
+    public void addAttendee(User user) {
         this.attendees.add(user);
     }
 
@@ -193,9 +205,9 @@ public class Agenda implements Comparable<Agenda> {
      * 
      * @param target 要删除的参会者
      */
-    public void DeleteAttendee(User target) {
+    public void deleteAttendee(User target) {
         for (User user : this.attendees) {
-            if (user.GetName().equals(target.GetName())) {
+            if (user.getName().equals(target.getName())) {
                 this.attendees.remove(target);
             }
         }
@@ -207,7 +219,7 @@ public class Agenda implements Comparable<Agenda> {
      * @param start_time 新的会议开始时间
      * @param end_time 新的会议结束时间
      */
-    public void ChangeTime(LocalDateTime start_time, LocalDateTime end_time) {
+    public void changeTime(LocalDateTime start_time, LocalDateTime end_time) {
         this.start_time = start_time;
         this.end_time = end_time;
     }
@@ -217,7 +229,7 @@ public class Agenda implements Comparable<Agenda> {
      * 
      * @param label 新的会议标签
      */
-    public void ChangeLabel(String label) {
+    public void changeLabel(String label) {
         this.label = label;
     }
 
@@ -234,4 +246,5 @@ public class Agenda implements Comparable<Agenda> {
         long otherTime = agenda.start_time.atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli();
         return thisTime == otherTime ? Long.compare(this.id, agenda.id) : Long.compare(thisTime, otherTime);
     }
+    
 }

@@ -6,13 +6,15 @@ import java.util.Scanner;
 import agenda.ui.command.Command;
 
 /**
+ * 命令处理类
+ * <p>
  * 处理用户输入的指令并将其分发至各个不同的类中进行处理。
  * 
  * @author 傅祉珏
  * @created 2025年03月26日
- * @lastUpdated 2025年03月27日
+ * @lastUpdated 2025年03月28日
  */
-public class IOProcess {
+public class CommandHandler {
 
     // 创建一个 Scanner 对象用于读取用户输入
     private static final Scanner scanner = new Scanner(System.in);
@@ -43,9 +45,13 @@ public class IOProcess {
             // 使用工厂模式根据命令创建相应的 Command 实例并执行
             Command cmd = Factory.getInstance("agenda.ui.command." + command, Command.class);
             cmd.exec(params);
+        } catch(NumberFormatException e) {
+            // 捕获数字格式异常并输出错误信息
+            System.out.println("Error: Wrong number format");
         } catch(Exception e) {
-            // 捕获未知命令异常并输出错误信息
-            System.out.println("Error: Unknown command");
+        	// 捕获其它所有命令异常并输出错误信息
+        	System.out.println("Error: Unknown command");
         }
     }
+    
 }

@@ -7,16 +7,16 @@ import agenda.bll.user.Manager;
 import agenda.bll.user.User;
 
 /**
- * Addagenda类
+ * addagenda类
  * <p>
  * 用于处理创建会议的命令。
  * 该类实现了Logger接口，负责解析用户输入的参数并调用Manager类的创建会议方法，处理会议的添加功能。
  * 
  * @author 傅祉珏
  * @created 2025年03月27日
- * @lastUpdated 2025年03月27日
+ * @lastUpdated 2025年03月28日
  */
-public class Addagenda implements Logger {
+public class Addagenda implements Loger {
 
     /**
      * exec方法 - 执行创建会议的命令。
@@ -51,7 +51,7 @@ public class Addagenda implements Logger {
 
         // 尝试创建会议，若时间格式不正确会捕获DateTimeParseException异常并输出提示
         try {
-            success = manager.CreateAgenda(params[2], params[3], params[4], params[5]);
+            success = manager.createAgenda(params[2], params[3], params[4], params[5]);
         } catch (DateTimeParseException e) {
             // 输出时间格式错误提示
             System.out.println("Error: Format of time - XXXX年XX月XX日_XX:XX:XX");

@@ -9,16 +9,15 @@ import agenda.bll.user.Manager;
 import agenda.bll.user.User;
 
 /**
- * Queryagenda类
+ * queryagenda类
  * <p>
  * 该类用于查询和显示指定的会议信息，包括查询所有会议、查询特定时间段内的会议以及查询特定会议。
- * </p>
  * 
  * @author 傅祉珏
  * @create 2025年3月27日
- * @lastUpdated 2025年3月27日
+ * @lastUpdated 2025年3月28日
  */
-public class Queryagenda implements Logger {
+public class Queryagenda implements Loger {
 
     /**
      * 执行查询会议的命令
@@ -54,7 +53,7 @@ public class Queryagenda implements Logger {
             params[2] = params[2].replace('_', ' '); // 替换时间格式中的下划线为空格
             params[3] = params[3].replace('_', ' ');
             try {
-                agendas = manager.SearchAgenda(params[2], params[3]);
+                agendas = manager.searchAgenda(params[2], params[3]);
             } catch (DateTimeParseException e) {
                 System.out.println("Error: Format of time - XXXX年XX月XX日_XX:XX:XX");
                 return;
@@ -63,7 +62,7 @@ public class Queryagenda implements Logger {
         // 查询某个特定会议
         else if (params.length == 3) {
             try {
-                agendas = manager.SearchAgenda(Long.parseLong(params[2]));
+                agendas = manager.searchAgenda(Long.parseLong(params[2]));
             } catch (NumberFormatException e) {
                 System.out.println("Error: Usage - queryagenda [userName] [password] [agendaID]");
                 return;
@@ -71,19 +70,19 @@ public class Queryagenda implements Logger {
         }
         // 查询所有会议
         else {
-            agendas = manager.SearchAgenda();
+            agendas = manager.searchAgenda();
         }
 
         // 格式化输出会议信息
         StringBuffer string = new StringBuffer("\r\n");
         for (Agenda agenda : agendas) {
             string.append("=============================================\r\n");
-            string.append("Agenda ID: " + agenda.GetId() + "\r\n");
-            string.append("Organizer: " + agenda.GetOrganizer() + "\r\n");
-            string.append("Attendees: " + agenda.GetAttendeesFormat() + "\r\n");
-            string.append("Start Time: " + agenda.GetStartTimeFormat() + "\r\n");
-            string.append("End Time: " + agenda.GetEndTimeFormat() + "\r\n");
-            string.append("Label: " + agenda.GetLabel() + "\r\n\r\n");
+            string.append("Agenda ID: " + agenda.getId() + "\r\n");
+            string.append("Organizer: " + agenda.getOrganizer() + "\r\n");
+            string.append("Attendees: " + agenda.getAttendeesFormat() + "\r\n");
+            string.append("Start Time: " + agenda.getStartTimeFormat() + "\r\n");
+            string.append("End Time: " + agenda.getEndTimeFormat() + "\r\n");
+            string.append("Label: " + agenda.getLabel() + "\r\n\r\n");
         }
 
         // 输出查询到的会议信息
@@ -91,4 +90,3 @@ public class Queryagenda implements Logger {
     }
 
 }
-

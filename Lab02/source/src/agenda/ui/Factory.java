@@ -1,7 +1,7 @@
 package agenda.ui;
 
 /**
- * Factory类
+ * 工厂类
  * <p>
  * 用于工厂设计模式，使用反射机制自动生成相应的命令类别，处理不同的命令。
  * 该类提供了一个静态方法，通过反射机制创建并返回相应的类的实例。
@@ -9,7 +9,7 @@ package agenda.ui;
  * 
  * @author 傅祉珏
  * @created 2025年03月27日
- * @lastUpdated 2025年03月27日
+ * @lastUpdated 2025年03月28日
  */
 public class Factory {
     
@@ -39,4 +39,5 @@ public class Factory {
         }
         return instance; // 返回创建的实例
     }
+    
 }

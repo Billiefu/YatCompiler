@@ -7,16 +7,14 @@ package agenda.bll.user;
  * 该类实现 Comparable 接口，以支持用户对象的比较（按用户名排序）。
  * 
  * @author 傅祉珏
- * @created 2025年3月13日
- * @lastUpdated 2025年3月27日
+ * @created 2025年3月6日
+ * @lastUpdated 2025年3月28日
  */
 public class User implements Comparable<User> {
     
-    // 用户名
-    private String name;
     
-    // 用户密码
-    private String code;
+    private String name;		// 用户名
+    private String code;		// 用户密码
 
     /**
      * 构造方法
@@ -39,8 +37,8 @@ public class User implements Comparable<User> {
      * @param user 要复制的用户对象
      */
     public User(User user) {
-        this.name = user.GetName();
-        this.code = user.GetCode(); // 修正错误：原代码错误地将 name 赋值两次
+        this.name = user.getName();
+        this.code = user.getCode();
     }
 
     /**
@@ -48,7 +46,7 @@ public class User implements Comparable<User> {
      *
      * @param name 新的用户名
      */
-    public void SetName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -57,7 +55,7 @@ public class User implements Comparable<User> {
      *
      * @param code 新的密码
      */
-    public void SetCode(String code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
@@ -66,7 +64,7 @@ public class User implements Comparable<User> {
      *
      * @return 用户名
      */
-    public String GetName() {
+    public String getName() {
         return this.name;
     }
 
@@ -75,7 +73,7 @@ public class User implements Comparable<User> {
      *
      * @return 用户密码
      */
-    public String GetCode() {
+    public String getCode() {
         return this.code;
     }
 
@@ -85,7 +83,7 @@ public class User implements Comparable<User> {
      * @param name 要匹配的用户名
      * @return 如果匹配则返回 true，否则返回 false
      */
-    public boolean SameName(String name) {
+    public boolean sameName(String name) {
         return this.name.matches(name);
     }
 
@@ -99,4 +97,5 @@ public class User implements Comparable<User> {
     public int compareTo(User user) {
         return this.name.compareTo(user.name);
     }
+    
 }

@@ -4,12 +4,13 @@ import java.io.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * AgendaIdGenerator 类
+ * 会议编号生成类
+ * <p>
  * 该类负责会议编号的持久化存储和读取操作
  * 
  * @author 傅祉珏
- * @created 2025年3月13日
- * @lastUpdated 2025年3月27日
+ * @created 2025年3月15日
+ * @lastUpdated 2025年3月28日
  */
 public class AgendaIdGenerator {
 
@@ -27,7 +28,7 @@ public class AgendaIdGenerator {
      */
     private AgendaIdGenerator() {
         // 加载文件中存储的上一个ID，或者初始化为0
-        this.currentId = new AtomicLong(LoadLastId());
+        this.currentId = new AtomicLong(loadLastId());
     }
 
     /**
@@ -44,8 +45,8 @@ public class AgendaIdGenerator {
      *
      * @return 当前ID
      */
-    public long GetId() {
-        return LoadLastId();
+    public long getId() {
+        return loadLastId();
     }
 
     /**
@@ -53,12 +54,12 @@ public class AgendaIdGenerator {
      *
      * @return 下一个ID
      */
-    public synchronized long NextId() {
+    public synchronized long nextId() {
         // 获取下一个ID
         long newId = this.currentId.incrementAndGet();
         
         // 将新ID保存到文件
-        this.PersistId(newId);
+        this.persistId(newId);
         
         // 返回新生成的ID
         return newId;
@@ -67,7 +68,7 @@ public class AgendaIdGenerator {
     /**
      * 重置ID（将ID递减）
      */
-    public synchronized void ResetId() {
+    public synchronized void resetId() {
         // 将当前ID减一
         this.currentId.decrementAndGet();
     }
@@ -77,7 +78,7 @@ public class AgendaIdGenerator {
      *
      * @return 返回上一个ID，若文件不存在则返回0
      */
-    private long LoadLastId() {
+    private long loadLastId() {
         File file = new File(ID_FILE);
         
         // 如果文件不存在，则返回0
@@ -97,7 +98,7 @@ public class AgendaIdGenerator {
      *
      * @param id 要保存的ID
      */
-    private void PersistId(long id) {
+    private void persistId(long id) {
         try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(ID_FILE))) {
             // 将ID写入文件
             dos.writeLong(id);
@@ -106,5 +107,5 @@ public class AgendaIdGenerator {
             throw new RuntimeException("ID持久化失败", e);
         }
     }
+    
 }
-

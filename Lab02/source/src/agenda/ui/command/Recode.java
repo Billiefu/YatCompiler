@@ -6,14 +6,15 @@ import agenda.bll.user.User;
 /**
  * Recode类
  * <p>
- * 该类用于修改用户密码。用户提供用户名、密码和新密码，通过验证用户身份后，进行密码修改。
- * </p>
+ * 该类用于修改用户密码
+ * 用户提供用户名、密码和新密码
+ * 通过验证用户身份后，进行密码修改
  * 
  * @author 傅祉珏
  * @create 2025年3月27日
- * @lastUpdated 2025年3月27日
+ * @lastUpdated 2025年3月28日
  */
-public class Recode implements Logger {
+public class Recode implements Loger {
 
     /**
      * 执行修改用户密码的命令
@@ -36,11 +37,10 @@ public class Recode implements Logger {
 
         // 将用户转换为管理者角色，执行修改密码的操作
         Manager manager = (Manager) user;
-        manager.ChangeCode(params[2]); // 更改密码
+        manager.changeCode(params[2]); // 更改密码
 
         // 输出成功信息
         System.out.println("Success: User Recoded");
     }
 
 }
-

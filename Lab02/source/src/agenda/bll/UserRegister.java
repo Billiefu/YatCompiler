@@ -14,10 +14,11 @@ import agenda.dml.UserManagement;
  * 
  * @author 傅祉珏
  * @created 2025年3月13日
- * @lastUpdated 2025年3月27日
+ * @lastUpdated 2025年3月28日
  */
 public class UserRegister {
-    // 获取用户管理实例（单例模式）
+	
+    // 获取用户管理实例
     private static UserManagement usermanagement = UserManagement.getInstance();
 
     /**
@@ -28,7 +29,7 @@ public class UserRegister {
      * @return 添加用户的结果状态码（由 UserManagement 决定）
      * @throws IOException 可能抛出的 IO 异常
      */
-    public static int AddUser(String name, String code) throws IOException {
+    public static int addUser(String name, String code) throws IOException {
         // 调用 UserManagement 进行用户注册
         return usermanagement.AddUser(new User(name, code));
     }
@@ -39,7 +40,7 @@ public class UserRegister {
      * @param name 要删除的用户名
      * @throws IOException 可能抛出的 IO 异常
      */
-    public static void DeleteUser(String name) throws IOException {
+    public static void deleteUser(String name) throws IOException {
         // 清空该用户的所有会议记录
         AgendaManagement.getInstance().ClearAgenda(name);
         // 从用户管理系统中删除用户
@@ -56,17 +57,17 @@ public class UserRegister {
      *         -2：密码错误
      *          0：登录成功
      */
-    public static int Login(String name, String code) {
+    public static int login(String name, String code) {
         // 查询用户是否存在
         User user = usermanagement.SearchUser(name);
         if (user == null) {
             return -1; // 用户不存在
         }
         // 检查密码是否匹配
-        if (!user.GetCode().matches(code)) {
+        if (!user.getCode().matches(code)) {
             return -2; // 密码错误
         }
         return 0; // 登录成功
     }
+    
 }
-
