@@ -8,24 +8,30 @@ import agenda.bll.user.User;
 
 /**
  * addagenda类
+ * 
  * <p>
  * 用于处理创建会议的命令。
  * 该类实现了Logger接口，负责解析用户输入的参数并调用Manager类的创建会议方法，处理会议的添加功能。
+ * </p>
  * 
  * @author 傅祉珏
  * @created 2025年03月27日
  * @lastUpdated 2025年03月28日
+ * 
  */
 public class Addagenda implements Loger {
 
     /**
-     * exec方法 - 执行创建会议的命令。
+     * 执行创建会议的命令
+     * 
      * <p>
      * 该方法接收命令行参数，验证用户身份，并尝试根据提供的参数创建会议。
      * 如果时间格式不正确或有冲突，会输出相应的错误信息。
+     * </p>
      * 
      * @param params 命令行传入的参数
      * @throws IOException 如果出现I/O异常
+     * 
      */
     @Override
     public void exec(String[] params) throws IOException {

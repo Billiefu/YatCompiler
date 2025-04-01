@@ -2,12 +2,15 @@ package agenda.ui.command;
 
 /**
  * developer类
+ * 
  * <p>
  * 该类用于显示开发者信息。
+ * </p>
  * 
  * @author 傅祉珏
- * @create 2025年3月27日
+ * @created 2025年3月27日
  * @lastUpdated 2025年3月28日
+ * 
  */
 public class Developer implements Other {
 

@@ -12,25 +12,28 @@ import agenda.dal.AgendaIdGenerator;
 
 /**
  * 会议管理类
+ * 
  * <p>
  * 用于管理所有已有的会议信息。
  * 该类采用单例模式，提供会议的添加、删除、修改和查询功能。
+ * </p>
  * 
  * @author 傅祉珏
  * @created 2025年3月15日
  * @lastUpdated 2025年3月28日
+ * 
  */
 public class AgendaManagement {
 
-	// 单例实例（饿汉式）
+	/** 单例实例（饿汉式） */
     private static final AgendaManagement Instance = new AgendaManagement();
 
-    // 存储所有会议的集合，使用 TreeSet 以保持会议排序
+    /** 存储所有会议的集合 */
     private Set<Agenda> agendas = new TreeSet<Agenda>();
 
     /**
      * 私有构造方法（单例模式）
-     * <p>
+     * 
      * 初始化会议管理系统，从存储中读取会议数据
      */
     private AgendaManagement() {
@@ -117,7 +120,7 @@ public class AgendaManagement {
      *
      * @param agenda 需要添加的会议对象
      * @return 添加结果：
-     *         true - 添加成功，
+     *         true - 添加成功；
      *         false - 会议时间冲突
      * @throws IOException 可能抛出的异常
      */
@@ -281,9 +284,9 @@ public class AgendaManagement {
      * @param id 会议 ID
      * @param attendee 新增的参会者
      * @return 添加结果：
-     *         0 - 添加成功，
-     *        -1 - 不是该会议组织者，
-     *        -2 - 会议不存在
+     *         0 - 添加成功；
+     *        -1 - 不是该会议组织者；
+     *        -2 - 会议不存在；
      *        -3 - 用户不存在（该返回码在Manager中返回）
      * @throws IOException 可能抛出的异常
      */
@@ -320,8 +323,8 @@ public class AgendaManagement {
      * @param name 会议组织者用户名
      * @param id 会议 ID
      * @param attendee 需要删除的参会者用户名
-     * @return flag 是否删除参会者成功
-     *         true - 删除成功
+     * @return flag 是否删除参会者成功：
+     *         true - 删除成功；
      *         false - 用户不存在
      * @throws IOException 可能抛出的异常
      */
@@ -342,10 +345,10 @@ public class AgendaManagement {
      *
      * @param name 会议组织者用户名
      * @param id 会议 ID
-     * @param attendee 需要更换的组织者用户名
-     * @return 更换结果
-     *         0 - 更换成功
-     *        -1 - 会议不存在
+     * @param organizer 需要更换的组织者用户名
+     * @return 更换结果：
+     *         0 - 更换成功；
+     *        -1 - 会议不存在；
      *        -2 - 用户不存在
      * @throws IOException 可能抛出的异常
      */

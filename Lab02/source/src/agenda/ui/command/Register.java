@@ -3,15 +3,18 @@ package agenda.ui.command;
 import agenda.bll.UserRegister;
 
 /**
- * Register类
+ * register类
+ * 
  * <p>
  * 该类用于注册新用户
  * 用户提供用户名和密码，调用UserRegister类的AddUser方法进行用户注册
  * 根据注册结果，输出不同的提示信息
+ * </p>
  * 
  * @author 傅祉珏
- * @create 2025年3月27日
+ * @created 2025年3月27日
  * @lastUpdated 2025年3月28日
+ * 
  */
 public class Register implements Other {
 

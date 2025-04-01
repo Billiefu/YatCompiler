@@ -5,12 +5,15 @@ import agenda.bll.user.User;
 
 /**
  * deleteagenda类
+ * 
  * <p>
  * 该类用于删除指定的会议。
+ * </p>
  * 
  * @author 傅祉珏
- * @create 2025年3月27日
+ * @created 2025年3月27日
  * @lastUpdated 2025年3月28日
+ * 
  */
 public class Deleteagenda implements Loger {
 

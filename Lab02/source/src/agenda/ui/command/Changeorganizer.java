@@ -5,22 +5,28 @@ import agenda.bll.user.User;
 
 /**
  * changeorganizer 类
+ * 
  * <p>
  * 该类用于更改指定会议的组织者，需要进行用户身份验证后才能执行操作。
+ * </p>
  * 
  * @author 傅祉珏
- * @create 2025年3月28日
+ * @created 2025年3月28日
  * @lastUpdated 2025年3月28日
+ * 
  */
 public class Changeorganizer implements Loger {
 
     /**
      * 执行更改会议组织者的命令
+     * 
      * <p>
      * 该方法首先验证用户身份，然后尝试更改指定会议的组织者，并根据执行结果输出相应信息。
+     * </p>
      * 
      * @param params 命令参数，格式为 [userName] [password] [agendaID] [organizer]
      * @throws Exception 可能抛出的异常
+     * 
      */
     @Override
     public void exec(String[] params) throws Exception {

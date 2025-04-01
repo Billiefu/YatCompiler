@@ -1,14 +1,16 @@
 package agenda.ui.command;
 
 /**
- * Quit类
+ * quit类
+ * 
  * <p>
  * 该类用于退出会议系统，执行退出操作时，打印退出信息并终止系统的运行。
  * </p>
  * 
  * @author 傅祉珏
- * @create 2025年3月27日
+ * @created 2025年3月27日
  * @lastUpdated 2025年3月28日
+ * 
  */
 public class Quit implements Other {
 

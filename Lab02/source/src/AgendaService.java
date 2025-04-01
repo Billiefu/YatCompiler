@@ -2,13 +2,16 @@ import agenda.ui.CommandHandler;
 
 /**
  * 会议管理服务类
+ * 
  * <p>
  * 负责初始化并启动命令行用户界面，作为整个会议管理系统程序的启动入口。
  * 遵循Java应用程序标准入口规范，不包含业务逻辑实现。
+ * </p>
  * 
  * @author 傅祉珏
  * @created 2025年3月6日
  * @lastUpdated 2025年3月28日
+ * 
  */
 public class AgendaService {
     

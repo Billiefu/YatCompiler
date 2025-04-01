@@ -5,26 +5,34 @@ import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * 会议编号生成类
+ * 
  * <p>
  * 该类负责会议编号的持久化存储和读取操作
+ * </p>
  * 
  * @author 傅祉珏
  * @created 2025年3月15日
  * @lastUpdated 2025年3月28日
+ * 
  */
 public class AgendaIdGenerator {
 
-    // ID 文件存储路径
+    /** ID 文件存储路径 */
     private static final String ID_FILE = "C:" + File.separator + "java" + File.separator + "ids.dat";
     
-    // 单例模式实例
+    /** 单例模式实例 */
     private static final AgendaIdGenerator INSTANCE = new AgendaIdGenerator();
     
-    // 使用 AtomicLong 确保线程安全的计数器
+    /** 确保线程安全的计数器 */
     private final AtomicLong currentId;
 
     /**
-     * 构造方法：初始化当前ID为从文件加载的上一个ID
+     * 构造方法
+     * 
+     * <p>
+     * 初始化当前ID为从文件加载的上一个ID
+     * </p>
+     * 
      */
     private AgendaIdGenerator() {
         // 加载文件中存储的上一个ID，或者初始化为0

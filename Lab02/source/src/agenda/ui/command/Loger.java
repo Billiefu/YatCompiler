@@ -6,37 +6,46 @@ import agenda.bll.user.User;
 
 /**
  * Loger接口
+ * 
  * <p>
  * 该接口继承自Command接口，作为需要进行登录验证的命令接口。
  * 实现该接口的类在执行命令之前，必须验证用户的身份。
+ * </p>
  * 
  * @author 傅祉珏
- * @create 2025年3月27日
+ * @created 2025年3月27日
  * @lastUpdated 2025年3月28日
+ * 
  */
 public interface Loger extends Command {
     
     /**
      * 执行命令的方法
+     * 
      * <p>
      * 由于该方法为接口的方法，所以具体实现会由继承该接口的类来提供。
+     * </p>
      * 
      * @param params 命令参数
      * @throws Exception 可能抛出的异常
+     * 
      */
     @Override
     public abstract void exec(String[] params) throws Exception;
 
     /**
      * 验证用户登录身份
+     * 
      * <p>
      * 该方法通过用户名和密码验证用户的身份。
      * 如果验证成功，返回对应的User对象；
      * 如果验证失败，返回null。
+     * </p>
      * 
      * @param name 用户名
      * @param code 密码
      * @return 返回User对象（成功）或null（失败）
+     * 
      */
     default User checkLogin(String name, String code) {
         // 创建一个新的Manager对象（该对象用于进行用户身份验证）

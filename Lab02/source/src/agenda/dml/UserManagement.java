@@ -9,25 +9,28 @@ import agenda.dal.UserIO;
 
 /**
  * 用户管理类
+ * 
  * <p>
  * 用于管理所有已有的用户信息。
  * 该类采用单例模式，提供用户的添加、删除、修改和查询功能。
+ * </p>
  * 
  * @author 傅祉珏
  * @created 2025年3月15日
  * @lastUpdated 2025年3月28日
+ * 
  */
 public class UserManagement {
     
-	// 单例实例（饿汉式）
+	/** 单例实例（饿汉式） */
     private static final UserManagement Instance = new UserManagement();
     
-    // 存储所有用户的集合，使用 TreeSet 以保持用户排序
+    /** 存储所有用户的集合 */
     private Set<User> users = new TreeSet<User>();
 
     /**
      * 私有构造方法（单例模式）
-     * <p>
+     * 
      * 初始化用户管理系统，从存储中读取用户数据。
      */
     private UserManagement() {
@@ -79,8 +82,8 @@ public class UserManagement {
      *
      * @param user 需要添加的用户对象
      * @return 添加结果：
-     *         0 - 添加成功，
-     *        -1 - 用户名为空，
+     *         0 - 添加成功；
+     *        -1 - 用户名为空；
      *        -2 - 用户名已存在
      * @throws IOException 可能抛出的异常
      */
@@ -144,7 +147,7 @@ public class UserManagement {
      * @param name 旧用户名
      * @param newname 新用户名
      * @return 是否修改成功：
-     *         true - 修改成功，
+     *         true - 修改成功；
      *         false - 新用户名已存在
      * @throws IOException 可能抛出的异常
      */

@@ -3,42 +3,59 @@ package agenda.bll;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
+import java.util.TreeSet;
 
 import agenda.bll.user.User;
 import agenda.dml.AgendaManagement;
 
 /**
  * 会议日程类
+ * 
  * <p>
  * 该类用于抽象化表示会议日程，并实现 Comparable 接口进行比较
+ * </p>
  * 
  * @author 傅祉珏
  * @created 2025年3月6日
  * @lastUpdated 2025年3月28日
+ * 
  */
 public class Agenda implements Comparable<Agenda> {
     
-    private long id; 						 // 会议ID
-    private User organizer; 				 // 组织者
-    private Set<User> attendees;			 // 参会者集合
-    private LocalDateTime start_time; 		 // 会议开始时间
-    private LocalDateTime end_time;			 // 会议结束时间
-    private String label; 					 // 会议标签
+	/** 会议ID */
+    private long id;
+    
+    /** 组织者 */
+    private User organizer;
+    
+    /** 参会者集合 */
+    private Set<User> attendees;
+    
+    /** 会议开始时间 */
+    private LocalDateTime start_time;
+    
+    /** 会议结束时间 */
+    private LocalDateTime end_time;
+    
+    /** 会议标签 */
+    private String label;
 
     /**
      * 会议构造方法
+     * 
      * <p>
      * 该方法用于构造一个全新的会议
      * 会议ID会在成功添加进系统后再赋值
+     * </p>
      * 
      * @param organizer 会议组织者
      * @param attendees 参会人员集合
      * @param start_time 会议开始时间（字符串格式）
      * @param end_time 会议结束时间（字符串格式）
      * @param label 会议标签
+     * 
      */
     public Agenda(User organizer, Set<User> attendees, String start_time, String end_time, String label) {
         DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(Locale.CHINA);
@@ -52,9 +69,11 @@ public class Agenda implements Comparable<Agenda> {
 
     /**
      * 会议构造方法
+     * 
      * <p>
      * 该方法用于构造一个已存在的会议
      * 已存在的会议已经赋予了会议ID，需一同传入至该会议当中
+     * </p>
      * 
      * @param id 会议ID
      * @param organizer 会议组织者
@@ -62,6 +81,7 @@ public class Agenda implements Comparable<Agenda> {
      * @param start_time 会议开始时间（字符串格式）
      * @param end_time 会议结束时间（字符串格式）
      * @param label 会议标签
+     * 
      */
     public Agenda(long id, User organizer, Set<User> attendees, String start_time, String end_time, String label) {
         DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(Locale.CHINA);
@@ -75,7 +95,7 @@ public class Agenda implements Comparable<Agenda> {
 
     /**
      * 设置会议 ID
-     * <p>
+     * 
      * 从会议管理类中获取新的 ID
      */
     public void setId() {
@@ -115,7 +135,7 @@ public class Agenda implements Comparable<Agenda> {
      * @return 参会者姓名集合
      */
     public Set<String> getAttendeesFormat() {
-        Set<String> attendees = new HashSet<String>();
+        Set<String> attendees = new TreeSet<String>();
         for (User user : this.attendees) {
             attendees.add(user.getName());
         }
@@ -211,17 +231,6 @@ public class Agenda implements Comparable<Agenda> {
                 this.attendees.remove(target);
             }
         }
-    }
-
-    /**
-     * 更改会议时间
-     * 
-     * @param start_time 新的会议开始时间
-     * @param end_time 新的会议结束时间
-     */
-    public void changeTime(LocalDateTime start_time, LocalDateTime end_time) {
-        this.start_time = start_time;
-        this.end_time = end_time;
     }
 
     /**

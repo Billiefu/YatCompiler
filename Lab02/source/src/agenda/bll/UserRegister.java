@@ -8,17 +8,20 @@ import agenda.dml.UserManagement;
 
 /**
  * 用户注册类
+ * 
  * <p>
  * 用于完成用户的注册、注销和登录功能。
  * 该类提供用户的添加、删除及登录验证的方法。
+ * </p>
  * 
  * @author 傅祉珏
  * @created 2025年3月13日
  * @lastUpdated 2025年3月28日
+ * 
  */
 public class UserRegister {
 	
-    // 获取用户管理实例
+    /** 用户管理实例 */
     private static UserManagement usermanagement = UserManagement.getInstance();
 
     /**
@@ -53,8 +56,8 @@ public class UserRegister {
      * @param name 用户名
      * @param code 用户输入的密码
      * @return 返回登录状态：
-     *         -1：用户不存在
-     *         -2：密码错误
+     *         -1：用户不存在；
+     *         -2：密码错误；
      *          0：登录成功
      */
     public static int login(String name, String code) {
@@ -64,7 +67,7 @@ public class UserRegister {
             return -1; // 用户不存在
         }
         // 检查密码是否匹配
-        if (!user.getCode().matches(code)) {
+        if (!user.sameCode(code)) {
             return -2; // 密码错误
         }
         return 0; // 登录成功

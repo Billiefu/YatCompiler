@@ -7,16 +7,19 @@ import agenda.ui.command.Command;
 
 /**
  * 命令处理类
+ * 
  * <p>
  * 处理用户输入的指令并将其分发至各个不同的类中进行处理。
+ * </p>
  * 
  * @author 傅祉珏
  * @created 2025年03月26日
  * @lastUpdated 2025年03月28日
+ * 
  */
 public class CommandHandler {
 
-    // 创建一个 Scanner 对象用于读取用户输入
+    /** 创建一个 Scanner 对象用于读取用户输入 */
     private static final Scanner scanner = new Scanner(System.in);
 
     /**

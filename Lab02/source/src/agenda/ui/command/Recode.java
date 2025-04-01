@@ -4,15 +4,18 @@ import agenda.bll.user.Manager;
 import agenda.bll.user.User;
 
 /**
- * Recode类
+ * recode类
+ * 
  * <p>
  * 该类用于修改用户密码
  * 用户提供用户名、密码和新密码
  * 通过验证用户身份后，进行密码修改
+ * </p>
  * 
  * @author 傅祉珏
- * @create 2025年3月27日
+ * @created 2025年3月27日
  * @lastUpdated 2025年3月28日
+ * 
  */
 public class Recode implements Loger {
 

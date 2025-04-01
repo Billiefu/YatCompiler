@@ -9,22 +9,28 @@ import agenda.ui.Factory;
 
 /**
  * batch类
+ * 
  * <p>
  * 该类用于执行批处理任务，从文件中读取命令并依次执行。
+ * </p>
  * 
  * @author 傅祉珏
- * @create 2025年3月27日
+ * @created 2025年3月27日
  * @lastUpdated 2025年3月28日
+ * 
  */
 public class Batch implements Other {
 
     /**
      * 执行批处理任务
+     * 
      * <p>
      * 该方法从指定文件中读取命令，并逐行执行。
+     * </p>
      * 
      * @param params 命令参数，包含批处理文件名
      * @throws Exception 可能抛出的异常
+     * 
      */
     @Override
     public void exec(String[] params) throws Exception {

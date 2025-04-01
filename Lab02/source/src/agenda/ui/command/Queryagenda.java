@@ -10,21 +10,24 @@ import agenda.bll.user.User;
 
 /**
  * queryagenda类
+ * 
  * <p>
  * 该类用于查询和显示指定的会议信息，包括查询所有会议、查询特定时间段内的会议以及查询特定会议。
+ * </p>
  * 
  * @author 傅祉珏
- * @create 2025年3月27日
+ * @created 2025年3月27日
  * @lastUpdated 2025年3月28日
+ * 
  */
 public class Queryagenda implements Loger {
 
     /**
      * 执行查询会议的命令
      * 
-     * @param params 命令参数
-     *               queryagenda [userName] [password] [starttime] [endtime] —— 查询某一时间段内的会议
-     *               queryagenda [userName] [password] [agendaID] —— 查询某个特定会议
+     * @param params 命令参数：
+     *               queryagenda [userName] [password] [starttime] [endtime] —— 查询某一时间段内的会议；
+     *               queryagenda [userName] [password] [agendaID] —— 查询某个特定会议；
      *               queryagenda [userName] [password] —— 查询所有会议
      * @throws Exception 可能抛出的异常
      */

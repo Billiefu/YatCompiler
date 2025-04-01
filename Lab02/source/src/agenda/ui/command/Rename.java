@@ -4,15 +4,18 @@ import agenda.bll.user.Manager;
 import agenda.bll.user.User;
 
 /**
- * Rename类
+ * rename类
+ * 
  * <p>
  * 该类用于修改用户的用户名。
  * 用户需要提供当前用户名和密码以及新的用户名。
  * 如果验证通过并且新的用户名没有被占用，则修改用户名。
+ * </p>
  * 
  * @author 傅祉珏
- * @create 2025年3月27日
+ * @created 2025年3月27日
  * @lastUpdated 2025年3月28日
+ * 
  */
 public class Rename implements Loger {
 

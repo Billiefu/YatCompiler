@@ -15,26 +15,32 @@ import agenda.dml.UserManagement;
 
 /**
  * 会议管理员类
+ * 
  * <p>
  * 继承自 User 类，用于管理该用户的会议信息。
  * 该类提供管理会议的功能，包括创建、删除、修改会议等操作。
+ * </p>
  * 
  * @author 傅祉珏
  * @created 2025年3月13日
  * @lastUpdated 2025年3月28日
+ * 
  */
 public class Manager extends User {
     
-    // 管理的会议集合，使用 TreeSet 进行存储，确保会议按时间排序
+    /** 该用户的会议集合 */
     private Set<Agenda> agendas;
 
     /**
-     * 构造方法：
+     * 构造方法
+     * 
      * <p>
      * 基于用户名和密码创建 Manager 对象，并初始化会议集合
+     * </p>
      *
      * @param name 用户名
      * @param code 用户密码
+     * 
      */
     public Manager(String name, String code) {
         super(name, code);
@@ -43,10 +49,13 @@ public class Manager extends User {
 
     /**
      * 构造方法
+     * 
      * <p>
      * 通过用户名查找已有用户，并初始化该用户的会议集合
+     * </p>
      *
      * @param name 用户名
+     * 
      */
     public Manager(String name) {
         super(UserManagement.getInstance().SearchUser(name));
@@ -232,6 +241,7 @@ public class Manager extends User {
      * @param id 会议 ID
      * @param name 参与者用户名
      * @throws IOException 可能抛出的异常
+     * @return 同 AgendaManagement 类的 DeleteAttendee 函数
      */
     public boolean deleteAttendee(long id, String name) throws IOException {
         return AgendaManagement.getInstance().DeleteAttendee(this.getName(), id, name);
@@ -243,6 +253,7 @@ public class Manager extends User {
      * @param id 会议 ID
      * @param name 新组织者用户名
      * @throws IOException 可能抛出的异常
+     * @return 同 AgendaManagement 类的 ChangeOrganizer 函数
      */
     public int changeOrganizer(long id, String name) throws IOException {
     	User attendee = UserManagement.getInstance().SearchUser(name);
