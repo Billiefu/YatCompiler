@@ -12,26 +12,34 @@ import javax.swing.border.EmptyBorder;
 
 /**
  * 保存成功提示窗口
+ * 
  * <p>
  * 当用户在参数编辑界面完成合法数据保存时，显示操作成功的确认界面。
  * 采用模态窗口设计，提供简洁的成功反馈和返回操作。
+ * </p>
  * 
  * @author 傅祉珏
  * @created 2025年2月27日
- * @lastModified 2025年3月7日
+ * @lastUpdated 2025年3月7日
+ * 
  */
 public class Check extends JFrame {
-
+	
+	/** 序列化版本号 */
     private static final long serialVersionUID = 1L;
+    
+    /** GUI容器组件 */
     private JPanel contentPane;
 
     /**
      * 成功提示窗口构造器
+     * 
      * <p>
-     * 初始化包含以下元素的界面：
-     * - 保存成功提示标题
-     * - 返回功能按钮
+     * 初始化包含以下元素的界面：<br>
+     * - 保存成功提示标题；<br>
+     * - 返回功能按钮；<br>
      * 窗口设置为固定尺寸且不可调整大小
+     * </p>
      */
     public Check() {
         // 窗口基础设置
@@ -58,7 +66,7 @@ public class Check extends JFrame {
         returnButton.addActionListener(new ActionListener() {
             /**
              * 按钮点击事件处理
-             * <p>
+             * 
              * 关闭当前提示窗口，释放窗口资源
              */
             @Override
@@ -68,4 +76,5 @@ public class Check extends JFrame {
         });
         contentPane.add(returnButton);
     }
+    
 }

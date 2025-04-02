@@ -18,29 +18,39 @@ import core.Tax;
 
 /**
  * 税务参数管理界面类
+ * 
  * <p>
- * 实现个人所得税参数的可视化编辑功能，支持：
- * - 实时展示当前起征点及税率表
- * - 参数格式有效性验证
+ * 实现个人所得税参数的可视化编辑功能，支持：<br>
+ * - 实时展示当前起征点及税率表；<br>
+ * - 参数格式有效性验证；<br>
  * - 参数动态更新与持久化存储
+ * </p>
  * 
  * @author 傅祉珏
  * @created 2025年2月27日
- * @lastModified 2025年3月7日
+ * @lastUpdated 2025年3月7日
+ * 
  */
 public class CurrentData extends JFrame {
     
+	/** 序列化版本号 */
     private static final long serialVersionUID = 1L;
+    
+    /** GUI容器组件 */
     private JPanel contentPane;
+    
+    /** 获取税率计算器 */
     private Tax tax = Tax.getInstance();
 
     /**
      * 参数管理界面构造器
+     * 
      * <p>
-     * 初始化包含以下组件的编辑界面：
-     * - 起征点输入框（带当前值展示）
-     * - 税率表文本编辑区（带滚动条）
+     * 初始化包含以下组件的编辑界面：<br>
+     * - 起征点输入框（带当前值展示）；<br>
+     * - 税率表文本编辑区（带滚动条）；<br>
      * - 保存/返回功能按钮
+     * </p>
      */
     public CurrentData() {
         // 窗口基础设置
@@ -101,11 +111,13 @@ public class CurrentData extends JFrame {
         saveBtn.addActionListener(new ActionListener() {
             /**
              * 保存操作事件处理
+             * 
              * <p>
-             * 执行参数验证流程：
-             * 1. 起征点有效性验证（正数校验）
-             * 2. 税率表格式验证（数值校验、级数逻辑校验）
+             * 执行参数验证流程：<br>
+             * 1. 起征点有效性验证（正数校验）；<br>
+             * 2. 税率表格式验证（数值校验、级数逻辑校验）；<br>
              * 3. 通过验证后更新核心数据并持久化
+             * </p>
              */
             public void actionPerformed(ActionEvent e) {
                 String threshold = thresholdField.getText();
@@ -161,12 +173,14 @@ public class CurrentData extends JFrame {
 
     /**
      * 税率表格式验证
+     * 
      * <p>
-     * 执行四级校验：
-     * 1. 行级分隔符有效性
-     * 2. 数值格式有效性
-     * 3. 首级金额有效性（>0）
+     * 执行四级校验：<br>
+     * 1. 行级分隔符有效性；<br>
+     * 2. 数值格式有效性；<br>
+     * 3. 首级金额有效性（>0）；<br>
      * 4. 级数连贯性校验（逐级递增）
+     * </p>
      *
      * @param taxtable 税率表原始字符串
      * @return 验证结果（true=有效）

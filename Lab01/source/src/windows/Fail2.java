@@ -12,28 +12,36 @@ import javax.swing.border.EmptyBorder;
 
 /**
  * 税率表格式错误提示窗口
+ * 
  * <p>
  * 当用户在参数编辑界面提交无效的税率表数据时，
- * 显示错误提示信息并要求重新输入。
+ * 显示错误提示信息并要求重新输入。<br>
  * 本窗口采用模态对话框设计，确保错误必须被处理。
+ * </p>
  * 
  * @author 傅祉珏
  * @created 2025年2月27日
- * @lastModified 2025年3月7日
+ * @lastUpdated 2025年3月7日
+ * 
  */
 public class Fail2 extends JFrame {
-
+	
+	/** 序列化版本号 */
     private static final long serialVersionUID = 1L;
+    
+    /** GUI容器组件 */
     private JPanel contentPane;
 
     /**
      * 错误提示窗口构造器
+     * 
      * <p>
-     * 初始化包含以下界面元素：
-     * - 错误提示标题
-     * - 具体税率表错误描述
-     * - 返回编辑界面的操作按钮
+     * 初始化包含以下界面元素：<br>
+     * - 错误提示标题<br>
+     * - 具体税率表错误描述<br>
+     * - 返回编辑界面的操作按钮<br>
      * 窗口尺寸固定为259x146像素
+     * </p>
      */
     public Fail2() {
         // 窗口基础设置
@@ -65,9 +73,11 @@ public class Fail2 extends JFrame {
         returnButton.addActionListener(new ActionListener() {
             /**
              * 按钮点击事件处理
+             * 
              * <p>
-             * 销毁当前窗口实例，允许用户返回编辑界面修正税率表
+             * 销毁当前窗口实例，允许用户返回编辑界面修正税率表<br>
              * 释放窗口占用的系统资源
+             * </p>
              */
             @Override
             public void actionPerformed(ActionEvent e) {

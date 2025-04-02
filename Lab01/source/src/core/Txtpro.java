@@ -8,21 +8,26 @@ import java.io.Reader;
 import java.io.Writer;
 
 /**
- * 文本文件处理器，负责数据的持久化存储和读取操作.
+ * 文本文件处理器
+ * 
  * <p>
- * 实现将结构化数据输出到.txt文件，并提供从.txt文件加载数据的功能。
+ * 实现将结构化数据输出到.txt文件，并提供从.txt文件加载数据的功能。<br>
  * 自动处理文件路径创建和默认文件初始化操作。
+ * </p>
  * 
  * @author 傅祉珏
  * @created 2025年2月27日
- * @updated 2025年3月7日
+ * @lastUpdated 2025年3月7日
+ * 
  */
 public class Txtpro {
     
     /**
-     * 将数据写入文本文件（UTF-8编码）
+     * 将数据写入文本文件
+     * 
      * <p>
      * 自动创建不存在的父级目录，使用系统默认换行符
+     * </p>
      * 
      * @param threshold 阈值参数，通常作为文件首行存储
      * @param textable 结构化文本内容，支持多行数据
@@ -49,9 +54,11 @@ public class Txtpro {
     
     /**
      * 从文本文件加载数据内容
+     * 
      * <p>
-     * 当目标文件不存在时，自动初始化默认数据文件：
+     * 当目标文件不存在时，自动初始化默认数据文件：<br>
      * 阈值1000，预设电话号码11000000000与初始状态0
+     * </p>
      * 
      * @return 文件内容的字符串形式，保留原始换行格式
      * @throws IOException 当文件读取失败时抛出
@@ -77,4 +84,5 @@ public class Txtpro {
             return new String(data, 0, len);  // 转换有效数据为字符串
         }
     }
+    
 }

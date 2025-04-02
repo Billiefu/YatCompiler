@@ -12,27 +12,35 @@ import javax.swing.border.EmptyBorder;
 
 /**
  * 开发者信息展示界面
+ * 
  * <p>
  * 本界面显示项目开发者信息及致谢内容，
- * 提供返回主界面的操作入口。
+ * 提供返回主界面的操作入口。<br>
  * 采用带滚动条的文本面板确保信息完整展示。
+ * </p>
  * 
  * @author 傅祉珏
  * @created 2025年2月27日
- * @lastModified 2025年3月7日
+ * @lastUpdated 2025年3月7日
+ * 
  */
 public class Developer extends JFrame {
-
+	
+	/** 序列化版本号 */
     private static final long serialVersionUID = 1L;
+    
+    /** GUI容器组件 */
     private JPanel contentPane;
 
     /**
      * 开发者界面构造器
+     * 
      * <p>
-     * 初始化包含以下元素的界面：
-     * - 带滚动条的开发者信息展示区
-     * - 返回主界面功能按钮
+     * 初始化包含以下元素的界面：<br>
+     * - 带滚动条的开发者信息展示区<br>
+     * - 返回主界面功能按钮<br>
      * 窗口尺寸固定为320x240像素
+     * </p>
      */
     public Developer() {
         // 窗口基础设置
@@ -62,9 +70,11 @@ public class Developer extends JFrame {
         returnButton.addActionListener(new ActionListener() {
             /**
              * 按钮点击事件处理
+             * 
              * <p>
              * 创建并显示主界面窗口，
              * 销毁当前开发者信息窗口
+             * </p>
              */
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -12,30 +12,38 @@ import javax.swing.border.EmptyBorder;
 
 /**
  * 应用程序主界面
+ * 
  * <p>
- * 作为程序核心导航界面，提供功能模块跳转入口：
- * - 参数查询/编辑界面
- * - 个税计算界面
- * - 开发者信息界面
- * - 程序退出功能
+ * 作为程序核心导航界面，提供功能模块跳转入口：<br>
+ * - 参数查询/编辑界面<br>
+ * - 个税计算界面<br>
+ * - 开发者信息界面<br>
+ * - 程序退出功能<br>
  * 采用中心化布局保持界面整洁。
+ * </p>
  * 
  * @author 傅祉珏
  * @created 2025年2月27日
- * @lastModified 2025年3月7日
+ * @lastUpdated 2025年3月7日
+ * 
  */
 public class Home extends JFrame {
 
+	/** 序列化版本号 */
     private static final long serialVersionUID = 1L;
+    
+    /** GUI容器组件 */
     private JPanel contentPane;
 
     /**
      * 主界面构造器
+     * 
      * <p>
-     * 初始化包含以下界面元素：
-     * - 应用程序标题
-     * - 四个功能导航按钮
+     * 初始化包含以下界面元素：<br>
+     * - 应用程序标题<br>
+     * - 四个功能导航按钮<br>
      * 窗口尺寸固定为320x240像素
+     * </p>
      */
     public Home() {
         // 窗口基础设置
@@ -72,9 +80,11 @@ public class Home extends JFrame {
         dataBtn.addActionListener(new ActionListener() {
             /**
              * 按钮点击事件处理
+             * 
              * <p>
              * 打开参数管理界面并关闭当前窗口，
              * 实现界面切换的无缝衔接
+             * </p>
              */
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -94,9 +104,11 @@ public class Home extends JFrame {
         calcBtn.addActionListener(new ActionListener() {
             /**
              * 按钮点击事件处理
+             * 
              * <p>
              * 启动计算器界面并释放主界面资源，
              * 优化内存使用效率
+             * </p>
              */
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -116,9 +128,11 @@ public class Home extends JFrame {
         devBtn.addActionListener(new ActionListener() {
             /**
              * 按钮点击事件处理
+             * 
              * <p>
              * 显示开发者信息窗口，
              * 保持主窗口的独立性
+             * </p>
              */
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -138,9 +152,11 @@ public class Home extends JFrame {
         exitBtn.addActionListener(new ActionListener() {
             /**
              * 按钮点击事件处理
+             * 
              * <p>
              * 直接终止应用程序运行，
              * 适用于快速退出场景
+             * </p>
              */
             @Override
             public void actionPerformed(ActionEvent e) {

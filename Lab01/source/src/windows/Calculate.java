@@ -16,28 +16,38 @@ import core.Tax;
 
 /**
  * 个人所得税计算界面实现类
+ * 
  * <p>
  * 提供可视化计算界面，集成收入输入、税款计算、结果展示功能，
  * 实现与税务计算核心模块的交互操作。
+ * </p>
  * 
  * @author 傅祉珏
  * @created 2025年2月27日
- * @lastModified 2025年3月7日
+ * @lastUpdated 2025年3月7日
+ * 
  */
 public class Calculate extends JFrame {
-
+	
+	/** 序列化版本号 */
     private static final long serialVersionUID = 1L;
+    
+    /** GUI容器组件 */
     private JPanel contentPane;
+    
+    /** 获取税率计算器 */
     private Tax tax = Tax.getInstance();
 
     /**
      * 计算界面构造器
+     * 
      * <p>
-     * 初始化窗口属性，创建界面元素，包含：
-     * - 收入输入框
-     * - 税款展示区域
-     * - 计算/返回功能按钮
+     * 初始化窗口属性，创建界面元素，包含：<br>
+     * - 收入输入框；<br>
+     * - 税款展示区域；<br>
+     * - 计算/返回功能按钮；<br>
      * 实现界面元素的事件绑定
+     * </p>
      */
     public Calculate() {
         // 窗口基础设置
@@ -102,10 +112,11 @@ public class Calculate extends JFrame {
             /**
              * 按钮点击事件处理
              * <p>
-             * 执行以下操作：
-             * 1. 验证输入格式有效性
-             * 2. 执行税款计算
+             * 执行以下操作：<br>
+             * 1. 验证输入格式有效性；<br>
+             * 2. 执行税款计算；<br>
              * 3. 展示计算结果或错误信息
+             * </p>
              */
             public void actionPerformed(ActionEvent e) {
                 String input = inputField.getText();
@@ -143,7 +154,7 @@ public class Calculate extends JFrame {
         button.addActionListener(new ActionListener() {
             /**
              * 返回主界面操作
-             * <p>
+             * 
              * 关闭当前窗口并重新显示主界面
              */
             public void actionPerformed(ActionEvent e) {
@@ -154,4 +165,5 @@ public class Calculate extends JFrame {
         
         return button;
     }
+    
 }

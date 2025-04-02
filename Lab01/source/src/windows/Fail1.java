@@ -12,28 +12,36 @@ import javax.swing.border.EmptyBorder;
 
 /**
  * 起征点格式错误提示窗口
+ * 
  * <p>
  * 当用户在参数编辑界面输入无效的个税起征点数据时，
- * 显示错误提示信息并提供返回操作。
+ * 显示错误提示信息并提供返回操作。<br>
  * 本窗口采用模态对话框设计，强制用户处理输入错误。
+ * </p>
  * 
  * @author 傅祉珏
  * @created 2025年2月27日
- * @lastModified 2025年3月7日
+ * @lastUpdated 2025年3月7日
+ * 
  */
 public class Fail1 extends JFrame {
-
+	
+	/** 序列化版本号 */
     private static final long serialVersionUID = 1L;
+    
+    /** GUI容器组件 */
     private JPanel contentPane;
 
     /**
      * 错误提示窗口构造器
+     * 
      * <p>
-     * 初始化包含以下元素的界面：
-     * - 错误提示标题
-     * - 具体错误描述
-     * - 返回操作按钮
+     * 初始化包含以下元素的界面：<br>
+     * - 错误提示标题<br>
+     * - 具体错误描述<br>
+     * - 返回操作按钮<br>
      * 窗口尺寸固定为259x146像素
+     * </p>
      */
     public Fail1() {
         // 窗口基础设置
@@ -65,9 +73,11 @@ public class Fail1 extends JFrame {
         returnButton.addActionListener(new ActionListener() {
             /**
              * 按钮点击事件处理
+             * 
              * <p>
              * 关闭当前错误提示窗口，释放系统资源，
              * 允许用户返回编辑界面修正输入
+             * </p>
              */
             @Override
             public void actionPerformed(ActionEvent e) {
