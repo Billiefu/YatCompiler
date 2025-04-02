@@ -17,7 +17,7 @@ import agenda.dml.UserManagement;
  * 会议管理员类
  * 
  * <p>
- * 继承自 User 类，用于管理该用户的会议信息。
+ * 继承自 User 类，用于管理该用户的会议信息。<br>
  * 该类提供管理会议的功能，包括创建、删除、修改会议等操作。
  * </p>
  * 
@@ -58,9 +58,9 @@ public class Manager extends User {
      * 
      */
     public Manager(String name) {
-        super(UserManagement.getInstance().SearchUser(name));
+        super(UserManagement.getInstance().searchUser(name));
         AgendaManagement agendamanagement = AgendaManagement.getInstance();
-        this.agendas = agendamanagement.SearchAgenda(getName());
+        this.agendas = agendamanagement.searchAgenda(getName());
     }
 
     /**
@@ -71,7 +71,7 @@ public class Manager extends User {
      * @throws IOException 可能抛出的异常
      */
     public boolean changeName(String name) throws IOException {
-        return UserManagement.getInstance().ChangeName(this.getName(), name);
+        return UserManagement.getInstance().changeName(this.getName(), name);
     }
 
     /**
@@ -81,7 +81,7 @@ public class Manager extends User {
      * @throws IOException 可能抛出的异常
      */
     public void changeCode(String code) throws IOException {
-        UserManagement.getInstance().ChangeCode(this.getName(), code);
+        UserManagement.getInstance().changeCode(this.getName(), code);
     }
 
     /**
@@ -139,7 +139,7 @@ public class Manager extends User {
     public boolean createAgenda(String attendee, String start_time, String end_time, String label) throws IOException {
         // 创建参与者集合
         Set<User> attendees = new TreeSet<User>();
-        attendees.add(UserManagement.getInstance().SearchUser(attendee));
+        attendees.add(UserManagement.getInstance().searchUser(attendee));
 
         // 创建新的会议对象
         Agenda agenda = new Agenda(new User(this.getName(), this.getCode()), attendees, start_time, end_time, label);
@@ -149,7 +149,7 @@ public class Manager extends User {
 
         // 获取会议管理实例，并添加会议
         AgendaManagement agendamanagement = AgendaManagement.getInstance();
-        if (!agendamanagement.AddAgenda(agenda)) {
+        if (!agendamanagement.addAgenda(agenda)) {
             return false;
         }
 
@@ -165,7 +165,7 @@ public class Manager extends User {
      * @throws IOException 可能抛出的异常
      */
     public void deleteAgenda(long id) throws IOException {
-        AgendaManagement.getInstance().DeleteAgenda(this.getName(), id);
+        AgendaManagement.getInstance().deleteAgenda(this.getName(), id);
     }
 
     /**
@@ -175,7 +175,7 @@ public class Manager extends User {
      */
     public void clearAgenda() throws IOException {
         AgendaManagement agendamanagement = AgendaManagement.getInstance();
-        agendamanagement.ClearAgenda(this.getName());
+        agendamanagement.clearAgenda(this.getName());
         this.agendas = new HashSet<Agenda>(); // 重新初始化会议集合
     }
 
@@ -197,7 +197,7 @@ public class Manager extends User {
                 .atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli();
 
         // 搜索符合时间范围的会议
-        return AgendaManagement.getInstance().SearchAgenda(this.getName(), start_time, end_time);
+        return AgendaManagement.getInstance().searchAgenda(this.getName(), start_time, end_time);
     }
 
     /**
@@ -207,7 +207,7 @@ public class Manager extends User {
      * @return 符合 ID 的会议集合
      */
     public Set<Agenda> searchAgenda(long id) {
-        return AgendaManagement.getInstance().SearchAgenda(this.getName(), id);
+        return AgendaManagement.getInstance().searchAgenda(this.getName(), id);
     }
 
     /**
@@ -216,7 +216,7 @@ public class Manager extends User {
      * @return 会议集合
      */
     public Set<Agenda> searchAgenda() {
-        return AgendaManagement.getInstance().SearchAgenda(this.getName());
+        return AgendaManagement.getInstance().searchAgenda(this.getName());
     }
 
     /**
@@ -228,11 +228,11 @@ public class Manager extends User {
      * @throws IOException 可能抛出的异常
      */
     public int addAttendee(long id, String name) throws IOException {
-    	User attendee = UserManagement.getInstance().SearchUser(name);
+    	User attendee = UserManagement.getInstance().searchUser(name);
     	if(attendee == null) {
     		return -3;
     	}
-        return AgendaManagement.getInstance().AddAttendee(this.getName(), id, attendee);
+        return AgendaManagement.getInstance().addAttendee(this.getName(), id, attendee);
     }
 
     /**
@@ -244,7 +244,7 @@ public class Manager extends User {
      * @return 同 AgendaManagement 类的 DeleteAttendee 函数
      */
     public boolean deleteAttendee(long id, String name) throws IOException {
-        return AgendaManagement.getInstance().DeleteAttendee(this.getName(), id, name);
+        return AgendaManagement.getInstance().deleteAttendee(this.getName(), id, name);
     }
     
     /**
@@ -256,11 +256,11 @@ public class Manager extends User {
      * @return 同 AgendaManagement 类的 ChangeOrganizer 函数
      */
     public int changeOrganizer(long id, String name) throws IOException {
-    	User attendee = UserManagement.getInstance().SearchUser(name);
+    	User attendee = UserManagement.getInstance().searchUser(name);
     	if(attendee == null) {
     		return -2;
     	}
-    	return AgendaManagement.getInstance().ChangeOrganizer(this.getName(), id, name);
+    	return AgendaManagement.getInstance().changeOrganizer(this.getName(), id, name);
     }
     
 }

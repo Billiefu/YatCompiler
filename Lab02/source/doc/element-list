@@ -5,3 +5,4 @@ agenda.dal
 agenda.dml
 agenda.ui
 agenda.ui.command
+test

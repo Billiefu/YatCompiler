@@ -10,7 +10,7 @@ import agenda.dml.UserManagement;
  * 用户注册类
  * 
  * <p>
- * 用于完成用户的注册、注销和登录功能。
+ * 用于完成用户的注册、注销和登录功能。<br>
  * 该类提供用户的添加、删除及登录验证的方法。
  * </p>
  * 
@@ -34,7 +34,7 @@ public class UserRegister {
      */
     public static int addUser(String name, String code) throws IOException {
         // 调用 UserManagement 进行用户注册
-        return usermanagement.AddUser(new User(name, code));
+        return usermanagement.addUser(new User(name, code));
     }
 
     /**
@@ -45,9 +45,9 @@ public class UserRegister {
      */
     public static void deleteUser(String name) throws IOException {
         // 清空该用户的所有会议记录
-        AgendaManagement.getInstance().ClearAgenda(name);
+        AgendaManagement.getInstance().clearAgenda(name);
         // 从用户管理系统中删除用户
-        usermanagement.DeleteUser(name);
+        usermanagement.deleteUser(name);
     }
 
     /**
@@ -55,14 +55,14 @@ public class UserRegister {
      *
      * @param name 用户名
      * @param code 用户输入的密码
-     * @return 返回登录状态：
-     *         -1：用户不存在；
-     *         -2：密码错误；
+     * @return 返回登录状态：<br>
+     *         -1：用户不存在；<br>
+     *         -2：密码错误；<br>
      *          0：登录成功
      */
     public static int login(String name, String code) {
         // 查询用户是否存在
-        User user = usermanagement.SearchUser(name);
+        User user = usermanagement.searchUser(name);
         if (user == null) {
             return -1; // 用户不存在
         }

@@ -14,7 +14,7 @@ import agenda.dal.AgendaIdGenerator;
  * 会议管理类
  * 
  * <p>
- * 用于管理所有已有的会议信息。
+ * 用于管理所有已有的会议信息。<br>
  * 该类采用单例模式，提供会议的添加、删除、修改和查询功能。
  * </p>
  * 
@@ -62,7 +62,7 @@ public class AgendaManagement {
                 long id = Long.parseLong(resultb[0][0]);
 
                 // 获取会议组织者
-                User organizer = usermanagement.SearchUser(resultb[1][0]);
+                User organizer = usermanagement.searchUser(resultb[1][0]);
                 if (organizer == null) {
                     continue;
                 }
@@ -70,7 +70,7 @@ public class AgendaManagement {
                 // 获取会议参与者
                 Set<User> attendees = new TreeSet<User>();
                 for (int i = 0; i < resultb[2].length; i++) {
-                    User attendee = usermanagement.SearchUser(resultb[2][i]);
+                    User attendee = usermanagement.searchUser(resultb[2][i]);
                     if (attendee == null) {
                         continue;
                     }
@@ -105,7 +105,7 @@ public class AgendaManagement {
      *
      * @throws IOException 可能抛出的异常
      */
-    private void SaveAgenda() throws IOException {
+    private void saveAgenda() throws IOException {
         // 删除存储的会议文件夹
         AgendaIO.deleteDirectory(new File("c:" + File.separator + "Java" + File.separator + "agenda"));
         
@@ -119,12 +119,12 @@ public class AgendaManagement {
      * 添加会议
      *
      * @param agenda 需要添加的会议对象
-     * @return 添加结果：
-     *         true - 添加成功；
+     * @return 添加结果：<br>
+     *         true - 添加成功；<br>
      *         false - 会议时间冲突
      * @throws IOException 可能抛出的异常
      */
-    public boolean AddAgenda(Agenda agenda) throws IOException {
+    public boolean addAgenda(Agenda agenda) throws IOException {
         for (Agenda other : this.agendas) {
             // 检查会议时间是否冲突
             if (other.getOrganizer().matches(agenda.getOrganizer()) &&
@@ -138,7 +138,7 @@ public class AgendaManagement {
 
         // 添加会议并保存
         this.agendas.add(agenda);
-        this.SaveAgenda();
+        this.saveAgenda();
         return true;
     }
 
@@ -148,7 +148,7 @@ public class AgendaManagement {
      * @param name 需要清空会议的用户名
      * @throws IOException 可能抛出的异常
      */
-    public void ClearAgenda(String name) throws IOException {
+    public void clearAgenda(String name) throws IOException {
         Set<Agenda> toDelete = new TreeSet<Agenda>();
         for (Agenda agenda : this.agendas) {
             if (agenda.getOrganizer().matches(name)) {
@@ -156,7 +156,7 @@ public class AgendaManagement {
             }
         }
         toDelete.forEach(this.agendas::remove);
-        this.SaveAgenda();
+        this.saveAgenda();
     }
 
     /**
@@ -166,7 +166,7 @@ public class AgendaManagement {
      * @param id 会议 ID
      * @throws IOException 可能抛出的异常
      */
-    public void DeleteAgenda(String name, long id) throws IOException {
+    public void deleteAgenda(String name, long id) throws IOException {
         Set<Agenda> toDelete = new TreeSet<Agenda>();
         for (Agenda agenda : this.agendas) {
             if (agenda.getOrganizer().matches(name) && agenda.getId() == id) {
@@ -174,7 +174,7 @@ public class AgendaManagement {
             }
         }
         toDelete.forEach(this.agendas::remove);
-        this.SaveAgenda();
+        this.saveAgenda();
     }
 
     /**
@@ -183,7 +183,7 @@ public class AgendaManagement {
      * @param name 会议组织者或参会者的用户名
      * @return 匹配的会议集合
      */
-    public Set<Agenda> SearchAgenda(String name) {
+    public Set<Agenda> searchAgenda(String name) {
     	// 存储匹配的会议
     	Set<Agenda> agendas = new TreeSet<Agenda>();
     	
@@ -212,7 +212,7 @@ public class AgendaManagement {
      * @param id   会议 ID
      * @return 匹配的会议集合
      */
-    public Set<Agenda> SearchAgenda(String name, long id) {
+    public Set<Agenda> searchAgenda(String name, long id) {
         // 存储匹配的会议
         Set<Agenda> agendas = new TreeSet<Agenda>();
 
@@ -243,7 +243,7 @@ public class AgendaManagement {
      * @param end_time   会议结束时间
      * @return 匹配的会议集合
      */
-    public Set<Agenda> SearchAgenda(String name, long start_time, long end_time) {
+    public Set<Agenda> searchAgenda(String name, long start_time, long end_time) {
         // 存储匹配的会议
         Set<Agenda> agendas = new TreeSet<Agenda>();
 
@@ -273,7 +273,7 @@ public class AgendaManagement {
      *
      * @return 生成的会议 ID
      */
-    public long SetAgendaID() {
+    public long setAgendaID() {
         return AgendaIdGenerator.getInstance().nextId();
     }
 
@@ -283,19 +283,19 @@ public class AgendaManagement {
      * @param name 会议组织者
      * @param id 会议 ID
      * @param attendee 新增的参会者
-     * @return 添加结果：
-     *         0 - 添加成功；
-     *        -1 - 不是该会议组织者；
-     *        -2 - 会议不存在；
+     * @return 添加结果：<br>
+     *         0 - 添加成功；<br>
+     *        -1 - 不是该会议组织者；<br>
+     *        -2 - 会议不存在；<br>
      *        -3 - 用户不存在（该返回码在Manager中返回）
      * @throws IOException 可能抛出的异常
      */
-    public int AddAttendee(String name, long id, User attendee) throws IOException {
+    public int addAttendee(String name, long id, User attendee) throws IOException {
         for (Agenda agenda : this.agendas) {
             if (agenda.getId() == id) {
                 if (agenda.getOrganizer().matches(name)) {
                     agenda.addAttendee(attendee);
-                    this.SaveAgenda();
+                    this.saveAgenda();
                     return 0;
                 }
                 return -1;
@@ -310,11 +310,11 @@ public class AgendaManagement {
      * @param name 需要删除的参会者用户名
      * @throws IOException 可能抛出的异常
      */
-    public void DeleteAttendee(String name) throws IOException {
+    public void deleteAttendee(String name) throws IOException {
         for (Agenda agenda : this.agendas) {
-            agenda.deleteAttendee(UserManagement.getInstance().SearchUser(name));
+            agenda.deleteAttendee(UserManagement.getInstance().searchUser(name));
         }
-        this.SaveAgenda();
+        this.saveAgenda();
     }
 
     /**
@@ -323,20 +323,20 @@ public class AgendaManagement {
      * @param name 会议组织者用户名
      * @param id 会议 ID
      * @param attendee 需要删除的参会者用户名
-     * @return flag 是否删除参会者成功：
-     *         true - 删除成功；
+     * @return flag 是否删除参会者成功：<br>
+     *         true - 删除成功；<br>
      *         false - 用户不存在
      * @throws IOException 可能抛出的异常
      */
-    public boolean DeleteAttendee(String name, long id, String attendee) throws IOException {
+    public boolean deleteAttendee(String name, long id, String attendee) throws IOException {
         boolean flag = false;
     	for (Agenda agenda : this.agendas) {
             if (agenda.getId() == id && agenda.getOrganizer().matches(name)) {
-                agenda.deleteAttendee(UserManagement.getInstance().SearchUser(attendee));
+                agenda.deleteAttendee(UserManagement.getInstance().searchUser(attendee));
                 flag = true;
             }
         }
-        this.SaveAgenda();
+        this.saveAgenda();
         return flag;
     }
     
@@ -346,17 +346,17 @@ public class AgendaManagement {
      * @param name 会议组织者用户名
      * @param id 会议 ID
      * @param organizer 需要更换的组织者用户名
-     * @return 更换结果：
-     *         0 - 更换成功；
-     *        -1 - 会议不存在；
+     * @return 更换结果：<br>
+     *         0 - 更换成功；<br>
+     *        -1 - 会议不存在；<br>
      *        -2 - 用户不存在
      * @throws IOException 可能抛出的异常
      */
-    public int ChangeOrganizer(String name, long id, String organizer) throws IOException {
+    public int changeOrganizer(String name, long id, String organizer) throws IOException {
     	for (Agenda agenda : this.agendas) {
     		if (agenda.getId() == id && agenda.getOrganizer().matches(name)) {
-    			agenda.changeOrganizer(UserManagement.getInstance().SearchUser(organizer));
-    			this.SaveAgenda();
+    			agenda.changeOrganizer(UserManagement.getInstance().searchUser(organizer));
+    			this.saveAgenda();
     			return 0;
     		}
     	}

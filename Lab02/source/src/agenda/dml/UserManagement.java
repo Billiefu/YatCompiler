@@ -11,7 +11,7 @@ import agenda.dal.UserIO;
  * 用户管理类
  * 
  * <p>
- * 用于管理所有已有的用户信息。
+ * 用于管理所有已有的用户信息。<br>
  * 该类采用单例模式，提供用户的添加、删除、修改和查询功能。
  * </p>
  * 
@@ -73,7 +73,7 @@ public class UserManagement {
      *
      * @throws IOException 可能抛出的异常
      */
-    private void SaveUsers() throws IOException {
+    private void saveUsers() throws IOException {
         UserIO.output(this.users);
     }
 
@@ -81,13 +81,13 @@ public class UserManagement {
      * 添加新用户
      *
      * @param user 需要添加的用户对象
-     * @return 添加结果：
-     *         0 - 添加成功；
-     *        -1 - 用户名为空；
+     * @return 添加结果：<br>
+     *         0 - 添加成功；<br>
+     *        -1 - 用户名为空；<br>
      *        -2 - 用户名已存在
      * @throws IOException 可能抛出的异常
      */
-    public int AddUser(User user) throws IOException {
+    public int addUser(User user) throws IOException {
         // 判断用户名是否为空
         if (user.getName() == null || user.getName().matches("")) {
             return -1;
@@ -102,7 +102,7 @@ public class UserManagement {
 
         // 添加用户并保存
         this.users.add(user);
-        this.SaveUsers();
+        this.saveUsers();
         return 0;
     }
 
@@ -112,7 +112,7 @@ public class UserManagement {
      * @param name 需要删除的用户名
      * @throws IOException 可能抛出的异常
      */
-    public void DeleteUser(String name) throws IOException {
+    public void deleteUser(String name) throws IOException {
         // 记录待删除用户
         Set<User> toDelete = new TreeSet<User>();
         for (User user : this.users) {
@@ -123,16 +123,16 @@ public class UserManagement {
 
         // 执行删除
         toDelete.forEach(this.users::remove);
-        this.SaveUsers();
+        this.saveUsers();
     }
-
+    
     /**
      * 查找指定用户名的用户
      *
      * @param name 需要查找的用户名
      * @return 找到的用户对象，如果不存在则返回 null
      */
-    public User SearchUser(String name) {
+    public User searchUser(String name) {
         for (User user : this.users) {
             if (user.getName().matches(name)) {
                 return user;
@@ -146,14 +146,14 @@ public class UserManagement {
      *
      * @param name 旧用户名
      * @param newname 新用户名
-     * @return 是否修改成功：
-     *         true - 修改成功；
+     * @return 是否修改成功：<br>
+     *         true - 修改成功；<br>
      *         false - 新用户名已存在
      * @throws IOException 可能抛出的异常
      */
-    public boolean ChangeName(String name, String newname) throws IOException {
+    public boolean changeName(String name, String newname) throws IOException {
         // 查找原用户
-        User origin = this.SearchUser(name);
+        User origin = this.searchUser(name);
         
         // 检查新用户名是否已存在
         for (User user : this.users) {
@@ -164,7 +164,7 @@ public class UserManagement {
 
         // 更新用户名并保存
         origin.setName(newname);
-        this.SaveUsers();
+        this.saveUsers();
         return true;
     }
 
@@ -175,13 +175,13 @@ public class UserManagement {
      * @param code 新密码
      * @throws IOException 可能抛出的异常
      */
-    public void ChangeCode(String name, String code) throws IOException {
+    public void changeCode(String name, String code) throws IOException {
         for (User user : this.users) {
             if (user.getName().matches(name)) {
                 user.setCode(code);
             }
         }
-        this.SaveUsers();
+        this.saveUsers();
     }
     
 }

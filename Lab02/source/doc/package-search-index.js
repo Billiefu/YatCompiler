@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"agenda.bll"},{"l":"agenda.bll.user"},{"l":"agenda.dal"},{"l":"agenda.dml"},{"l":"agenda.ui"},{"l":"agenda.ui.command"},{"l":"所有程序包","u":"allpackages-index.html"}];updateSearchResults();
+packageSearchIndex = [{"l":"agenda.bll"},{"l":"agenda.bll.user"},{"l":"agenda.dal"},{"l":"agenda.dml"},{"l":"agenda.ui"},{"l":"agenda.ui.command"},{"l":"test"},{"l":"所有程序包","u":"allpackages-index.html"}];updateSearchResults();

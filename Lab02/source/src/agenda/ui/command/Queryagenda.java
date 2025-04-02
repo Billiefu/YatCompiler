@@ -25,9 +25,9 @@ public class Queryagenda implements Loger {
     /**
      * 执行查询会议的命令
      * 
-     * @param params 命令参数：
-     *               queryagenda [userName] [password] [starttime] [endtime] —— 查询某一时间段内的会议；
-     *               queryagenda [userName] [password] [agendaID] —— 查询某个特定会议；
+     * @param params 命令参数：<br>
+     *               queryagenda [userName] [password] [starttime] [endtime] —— 查询某一时间段内的会议；<br>
+     *               queryagenda [userName] [password] [agendaID] —— 查询某个特定会议；<br>
      *               queryagenda [userName] [password] —— 查询所有会议
      * @throws Exception 可能抛出的异常
      */

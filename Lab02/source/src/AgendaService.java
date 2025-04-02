@@ -4,7 +4,7 @@ import agenda.ui.CommandHandler;
  * 会议管理服务类
  * 
  * <p>
- * 负责初始化并启动命令行用户界面，作为整个会议管理系统程序的启动入口。
+ * 负责初始化并启动命令行用户界面，作为整个会议管理系统程序的启动入口。<br>
  * 遵循Java应用程序标准入口规范，不包含业务逻辑实现。
  * </p>
  * 
@@ -29,7 +29,7 @@ public class AgendaService {
         // 无限循环，持续监听用户输入
         while (true) {
         	System.out.print("$ ");		// 显示命令行提示符
-        	CommandHandler.Process();
+        	CommandHandler.process();
         }
         
     }

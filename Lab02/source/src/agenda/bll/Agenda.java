@@ -46,7 +46,7 @@ public class Agenda implements Comparable<Agenda> {
      * 会议构造方法
      * 
      * <p>
-     * 该方法用于构造一个全新的会议
+     * 该方法用于构造一个全新的会议<br>
      * 会议ID会在成功添加进系统后再赋值
      * </p>
      * 
@@ -71,7 +71,7 @@ public class Agenda implements Comparable<Agenda> {
      * 会议构造方法
      * 
      * <p>
-     * 该方法用于构造一个已存在的会议
+     * 该方法用于构造一个已存在的会议<br>
      * 已存在的会议已经赋予了会议ID，需一同传入至该会议当中
      * </p>
      * 
@@ -99,7 +99,18 @@ public class Agenda implements Comparable<Agenda> {
      * 从会议管理类中获取新的 ID
      */
     public void setId() {
-        this.id = AgendaManagement.getInstance().SetAgendaID();
+        this.id = AgendaManagement.getInstance().setAgendaID();
+    }
+    
+    /**
+     * 设置会议 ID
+     * 
+     * 自定义设置会议 ID（仅在测试时调用）
+     * 
+     * @param id 自定义会议ID
+     */
+    public void setId(long id) {
+        this.id = id;
     }
 
     /**
@@ -243,8 +254,12 @@ public class Agenda implements Comparable<Agenda> {
     }
 
     /**
-     * 比较两个会议对象的时间先后顺序
+     * 比较会议顺序
+     * 
+     * <p>
+     * 比较两个会议对象的时间先后顺序<br>
      * 如果时间相同，则比较会议 ID
+     * </p>
      * 
      * @param agenda 另一个会议对象
      * @return 比较结果（负值表示当前会议时间更早，0 表示相同，正值表示当前会议时间更晚）

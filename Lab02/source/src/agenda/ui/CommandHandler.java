@@ -27,7 +27,7 @@ public class CommandHandler {
      * 
      * @throws Exception 如果在处理过程中发生错误
      */
-    public static void Process() throws Exception {
+    public static void process() throws Exception {
         // 读取用户输入并去除前后空白字符
         String input = scanner.nextLine().trim();
         
