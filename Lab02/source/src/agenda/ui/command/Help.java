@@ -65,7 +65,7 @@ public class Help implements Other {
         System.out.println("");
 
         // 查询会议
-        System.out.println("QueryAgenda - Query a specified agenda");
+        System.out.println("QueryAgenda - Query specified agendas");
         System.out.println("Usage - queryagenda [userName] [password] [starttime] [endtime]");
         System.out.println("        queryagenda [userName] [password] [agendaID]");
         System.out.println("        queryagenda [userName] [password]");

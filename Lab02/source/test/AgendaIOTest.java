@@ -66,7 +66,7 @@ class AgendaIOTest {
      * 该测试方法验证 {@link AgendaManagement#addAgenda(Agenda)} 方法的性能。<br>
      * 主要测试以下内容：<br>
      * 1. 计算添加 {@code datasize} 条会议数据的时间。<br>
-     * 2. 判断添加时间是否在 5000ms 内，若超时则测试失败。
+     * 2. 判断添加时间是否在 2500ms 内，若超时则测试失败。
      * </p>
      * 
      * @throws IOException 可能因文件存储失败抛出异常
@@ -86,8 +86,8 @@ class AgendaIOTest {
         // 输出添加操作的耗时
         System.out.println("[AgendaIO - 添加性能] 添加 " + datasize + " 条会议数据耗时：" + duration + "ms");
         
-        // 确保添加操作在 5000ms 内完成
-        assertTrue(duration < 5000, "会议数据读写时间超出预期");
+        // 确保添加操作在 2500ms 内完成
+        assertTrue(duration < 2500, "会议数据读写时间超出预期");
     }
     
     /**
@@ -97,7 +97,7 @@ class AgendaIOTest {
      * 该测试方法验证 {@link AgendaManagement#deleteAgenda(String, long)} 方法的性能。<br>
      * 主要测试以下内容：<br>
      * 1. 计算删除 {@code datasize} 条会议数据的时间。<br>
-     * 2. 判断删除时间是否在 5000ms 内，若超时则测试失败。
+     * 2. 判断删除时间是否在 2500ms 内，若超时则测试失败。
      * </p>
      * 
      * @throws IOException 可能因文件存储失败抛出异常
@@ -117,8 +117,8 @@ class AgendaIOTest {
         // 输出删除操作的耗时
         System.out.println("[AgendaIO - 删除性能] 删除 " + datasize + " 条会议数据耗时：" + duration + "ms");
         
-        // 确保删除操作在 5000ms 内完成
-        assertTrue(duration < 5000, "会议数据读写时间超出预期");
+        // 确保删除操作在 2500ms 内完成
+        assertTrue(duration < 2500, "会议数据读写时间超出预期");
     }
     
 }
