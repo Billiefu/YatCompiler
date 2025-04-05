@@ -91,8 +91,8 @@ class UserTest {
     @Test
     void sameTest() {
         User copy = new User(this.user); // 通过拷贝构造方法创建对象
-        assertEquals(this.user.getName(), copy.getName()); // 验证用户名一致
-        assertEquals(this.user.getCode(), copy.getCode()); // 验证密码一致
+        assertEquals(this.user.sameName(copy.getName()), true); // 验证用户名一致
+        assertEquals(this.user.sameCode(copy.getCode()), true); // 验证密码一致
     }
     
 }
