@@ -86,8 +86,8 @@ public class AgendaManagement {
                 Agenda agenda = new Agenda(id, organizer, attendees, start_time, end_time, label);
                 this.agendas.add(agenda);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+        	// 读取数据时发生异常，保持会议集合为空
         }
     }
 

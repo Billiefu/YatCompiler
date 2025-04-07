@@ -54,7 +54,7 @@ public class UserManagement {
                 User user = new User(resultb[i][0], resultb[i][1]);
                 this.users.add(user);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             // 读取数据时发生异常，保持用户集合为空
         }
     }
