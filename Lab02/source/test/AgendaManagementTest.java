@@ -76,8 +76,8 @@ class AgendaManagementTest {
 		usermanagement.addUser(attendee);
 		
 		// 初始化会议对象
-		this.agenda1 = new Agenda(organizer, attendees, "2025年3月13日 14:20:00", "2025年3月13日 16:00:00", "编译原理");
-		this.agenda2 = new Agenda(organizer, attendees, "2025年3月13日 14:00:00", "2025年3月13日 15:00:00", "实验室组会");
+		this.agenda1 = new Agenda(organizer, attendees, "2025-03-13 14:20:00", "2025-03-13 16:00:00", "编译原理");
+		this.agenda2 = new Agenda(organizer, attendees, "2025-03-13 14:00:00", "2025-03-13 15:00:00", "实验室组会");
 	}
 	
 	/**
@@ -107,7 +107,7 @@ class AgendaManagementTest {
 		this.agenda2 = new Agenda(
 			this.usermanagement.searchUser(this.agenda2.getOrganizer()), 
 			this.agenda2.getAttendees(), 
-			"2025年3月13日 16:30:00", "2025年3月13日 18:10:00", "编译器构造实验"
+			"2025-03-13 16:30:00", "2025-03-13 18:10:00", "编译器构造实验"
 		);
 		agenda2.setId(); // 生成新的 ID
 		

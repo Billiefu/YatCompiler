@@ -61,10 +61,10 @@ class AgendaTest {
 		attendee.add(user);
 		
 		// 初始化会议对象（未设置 ID）
-		this.agenda = new Agenda(organizer, attendee, "2025年3月13日 16:30:00", "2025年3月13日 18:10:00", "编译器构造实验");
+		this.agenda = new Agenda(organizer, attendee, "2025-03-13 16:30:00", "2025-03-13 18:10:00", "编译器构造实验");
 		
 		// 初始化会议对象（直接从 ID 生成器获取 ID）
-		this.agenda2 = new Agenda(AgendaIdGenerator.getInstance().getId(), organizer, attendee, "2025年3月13日 16:30:00", "2025年3月13日 18:10:00", "编译器构造实验");
+		this.agenda2 = new Agenda(AgendaIdGenerator.getInstance().getId(), organizer, attendee, "2025-03-13 16:30:00", "2025-03-13 18:10:00", "编译器构造实验");
 	}
 
 	/**
@@ -101,10 +101,10 @@ class AgendaTest {
 		}
 		
 		// 验证会议开始时间
-		assertEquals("2025年3月13日 16:30:00", agenda.getStartTimeFormat());
+		assertEquals("2025-03-13 16:30:00", agenda.getStartTimeFormat());
 		
 		// 验证会议结束时间
-		assertEquals("2025年3月13日 18:10:00", agenda.getEndTimeFormat());
+		assertEquals("2025-03-13 18:10:00", agenda.getEndTimeFormat());
 		
 		// 验证会议主题
 		assertEquals("编译器构造实验", agenda.getLabel());

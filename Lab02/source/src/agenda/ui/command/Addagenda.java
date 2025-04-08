@@ -60,8 +60,11 @@ public class Addagenda implements Loger {
             success = manager.createAgenda(params[2], params[3], params[4], params[5]);
         } catch (DateTimeParseException e) {
             // 输出时间格式错误提示
-            System.out.println("Error: Format of time - XXXX年XX月XX日_XX:XX:XX");
+            System.out.println("Error: Format of time - XXXX-XX-XX_XX:XX:XX");
             return; // 如果时间格式不正确，终止执行
+        } catch (NullPointerException e) {
+        	System.out.println("Error: Attendee not found");
+        	return;
         }
 
         // 根据创建会议的结果输出相应的提示信息

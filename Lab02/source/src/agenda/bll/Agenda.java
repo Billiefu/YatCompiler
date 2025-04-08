@@ -2,8 +2,6 @@ package agenda.bll;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-import java.util.Locale;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -58,7 +56,7 @@ public class Agenda implements Comparable<Agenda> {
      * 
      */
     public Agenda(User organizer, Set<User> attendees, String start_time, String end_time, String label) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(Locale.CHINA);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         this.id = -1;	// 会议 ID 设为默认值 -1
         this.organizer = organizer;
         this.attendees = attendees;
@@ -84,7 +82,7 @@ public class Agenda implements Comparable<Agenda> {
      * 
      */
     public Agenda(long id, User organizer, Set<User> attendees, String start_time, String end_time, String label) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(Locale.CHINA);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         this.id = id;
         this.organizer = organizer;
         this.attendees = attendees;
@@ -168,7 +166,7 @@ public class Agenda implements Comparable<Agenda> {
      * @return 会议开始时间（格式化字符串）
      */
     public String getStartTimeFormat() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(Locale.CHINA);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return formatter.format(this.start_time);
     }
 
@@ -187,7 +185,7 @@ public class Agenda implements Comparable<Agenda> {
      * @return 会议结束时间（格式化字符串）
      */
     public String getEndTimeFormat() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(Locale.CHINA);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return formatter.format(this.end_time);
     }
 

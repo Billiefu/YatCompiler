@@ -39,7 +39,7 @@ public class CommandHandler {
         
         // 获取第一个单词作为命令并将其首字母大写
         String command = tokens[0].toLowerCase();
-        command = command.substring(0, 1).toUpperCase() + command.substring(1).toLowerCase();
+        command = tokens[0].substring(0, 1).toUpperCase() + tokens[0].substring(1).toLowerCase();
         
         // 将命令后面的部分作为参数
         String[] params = Arrays.copyOfRange(tokens, 1, tokens.length);
@@ -53,6 +53,7 @@ public class CommandHandler {
             System.out.println("Error: Wrong number format");
         } catch(Exception e) {
         	// 捕获其它所有命令异常并输出错误信息
+        	// e.printStackTrace();
         	System.out.println("Error: Unknown command");
         }
     }

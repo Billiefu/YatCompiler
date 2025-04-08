@@ -2,8 +2,6 @@ package test;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-import java.util.Locale;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -73,9 +71,8 @@ public class TestDataGenerator {
             Set<User> attendees = new TreeSet<User>();
             attendees.add(attendee); // 将参与者添加到集合
             
-            // 创建时间格式化工具，使用中国本地格式
-            DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
-                                                           .withLocale(Locale.CHINA);
+            // 创建时间格式化工具
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             // 计算会议开始时间：当前时间 + i 小时
             String start_time = formatter.format(LocalDateTime.now().plusHours(i));
             // 计算会议结束时间：开始时间 + 1 小时 - 1 秒
