@@ -44,7 +44,7 @@ public class Parser {
      */
     public Parser(InputStream input) throws IOException {
         this.in = new PushbackInputStream(new BufferedInputStream(input)); // 使用带缓冲与回退的输入流
-        this.lookahead = nextToken(); // 预读取一个字符
+        lookahead = nextToken(); // 预读取一个字符
     }
 
     /**
