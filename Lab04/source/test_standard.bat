@@ -1,8 +1,8 @@
 @echo off
 cd bin
-java test.ExprEvalTest ..\testcases\standard.xml  > ..\testcases\report.txt
+java test.ExprEvalTest ..\test\standard.xml  > ..\test\report.txt
 cd ..
-type testcases\report.txt
+type test\report.txt
 pause
-del testcases\report.txt
+del test\report.txt
 @echo on
