@@ -1,0 +1,24 @@
+(* 错误类型：语义错误 - 使用未声明的变量 *)
+MODULE MultiplyByAddition;
+
+VAR
+  a, b, i: INTEGER; (* product 未声明 *)
+
+PROCEDURE Multiply(x, y: INTEGER): INTEGER;
+VAR
+  result, j: INTEGER;
+BEGIN
+  result := 0;
+  j := 0;
+  WHILE j < y DO
+    result := result + x;
+    j := j + 1
+  END;
+  RETURN result
+END Multiply;
+
+BEGIN
+  a := 4;
+  b := 3;
+  product := Multiply(a, b) (* product 未声明 *)
+END MultiplyByAddition.

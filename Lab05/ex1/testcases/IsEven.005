@@ -1,0 +1,16 @@
+(* 错误类型：语义错误 - 错误的返回值类型 *)
+MODULE IsEven;
+
+VAR
+  x: INTEGER;
+  isEven: BOOLEAN;
+
+PROCEDURE CheckEven(n: INTEGER): BOOLEAN;
+BEGIN
+  RETURN n MOD 2 (* 返回 INTEGER 而不是 BOOLEAN *)
+END CheckEven;
+
+BEGIN
+  x := 17;
+  isEven := CheckEven(x)
+END IsEven.

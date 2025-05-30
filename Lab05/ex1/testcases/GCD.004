@@ -1,0 +1,23 @@
+(* 错误类型：语义错误 - 使用未声明的变量 *)
+MODULE GCD;
+
+VAR
+  a, b, r: INTEGER; (* result 未声明 *)
+
+PROCEDURE ComputeGCD(x, y: INTEGER): INTEGER;
+VAR
+  temp: INTEGER;
+BEGIN
+  WHILE y # 0 DO
+    temp := y;
+    y := x MOD y;
+    x := temp
+  END;
+  RETURN x
+END ComputeGCD;
+
+BEGIN
+  a := 48;
+  b := 18;
+  result := ComputeGCD(a, b) (* result 未声明 *)
+END GCD.

@@ -1,0 +1,24 @@
+(* 错误类型：语义错误 - 数组越界 *)
+MODULE ArraySum;
+
+TYPE
+  IntArray = ARRAY 5 OF INTEGER;
+
+VAR
+  arr: IntArray;
+  i, sum: INTEGER;
+
+BEGIN
+  arr[0] := 1;
+  arr[1] := 2;
+  arr[2] := 3;
+  arr[3] := 4;
+  arr[5] := 5; (* 越界访问：索引应为 0..4 *)
+
+  sum := 0;
+  i := 0;
+  WHILE i < 5 DO
+    sum := sum + arr[i];
+    i := i + 1
+  END
+END ArraySum.

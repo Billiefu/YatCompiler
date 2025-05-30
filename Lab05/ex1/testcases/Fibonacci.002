@@ -1,0 +1,19 @@
+(* 错误类型：语法错误 - 缺少分号 *)
+MODULE Fibonacci;
+
+VAR
+  n, result: INTEGER;
+
+PROCEDURE Fib(x: INTEGER): INTEGER;
+BEGIN
+  IF x <= 1 THEN
+    RETURN x (* 缺少分号 *)
+  ELSE
+    RETURN Fib(x - 1) + Fib(x - 2)
+  END
+END Fib;
+
+BEGIN
+  n := 6;
+  result := Fib(n)
+END Fibonacci.

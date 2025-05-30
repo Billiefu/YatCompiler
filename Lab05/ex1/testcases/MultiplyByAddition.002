@@ -1,0 +1,24 @@
+(* 错误类型：语法错误 - 缺少分号 *)
+MODULE MultiplyByAddition;
+
+VAR
+  a, b, product, i: INTEGER;
+
+PROCEDURE Multiply(x, y: INTEGER): INTEGER;
+VAR
+  result, j: INTEGER;
+BEGIN
+  result := 0
+  j := 0; (* 缺少分号 *)
+  WHILE j < y DO
+    result := result + x;
+    j := j + 1
+  END;
+  RETURN result
+END Multiply;
+
+BEGIN
+  a := 4;
+  b := 3;
+  product := Multiply(a, b)
+END MultiplyByAddition.

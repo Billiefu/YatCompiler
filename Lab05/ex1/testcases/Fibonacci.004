@@ -1,0 +1,19 @@
+(* 错误类型：语义错误 - 使用未声明的变量 *)
+MODULE Fibonacci;
+
+VAR
+  n: INTEGER; (* result 未声明 *)
+
+PROCEDURE Fib(x: INTEGER): INTEGER;
+BEGIN
+  IF x <= 1 THEN
+    RETURN x
+  ELSE
+    RETURN Fib(x - 1) + Fib(x - 2)
+  END
+END Fib;
+
+BEGIN
+  n := 6;
+  result := Fib(n) (* result 未声明 *)
+END Fibonacci.

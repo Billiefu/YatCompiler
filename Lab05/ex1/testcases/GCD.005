@@ -1,0 +1,24 @@
+(* 错误类型：语义错误 - 无限循环 *)
+MODULE GCD;
+
+VAR
+  a, b, r, result: INTEGER;
+
+PROCEDURE ComputeGCD(x, y: INTEGER): INTEGER;
+VAR
+  temp: INTEGER;
+BEGIN
+  WHILE y # 0 DO
+    temp := y;
+    y := x MOD y;
+    x := temp;
+    y := 1 (* 强制 y 始终为 1，导致无限循环 *)
+  END;
+  RETURN x
+END ComputeGCD;
+
+BEGIN
+  a := 48;
+  b := 18;
+  result := ComputeGCD(a, b)
+END GCD.

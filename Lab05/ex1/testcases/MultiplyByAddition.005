@@ -1,0 +1,23 @@
+(* 错误类型：语义错误 - 无限循环 *)
+MODULE MultiplyByAddition;
+
+VAR
+  a, b, product, i: INTEGER;
+
+PROCEDURE Multiply(x, y: INTEGER): INTEGER;
+VAR
+  result, j: INTEGER;
+BEGIN
+  result := 0;
+  j := 0;
+  WHILE j < y DO
+    result := result + x (* 缺少 j := j + 1，导致无限循环 *)
+  END;
+  RETURN result
+END Multiply;
+
+BEGIN
+  a := 4;
+  b := 3;
+  product := Multiply(a, b)
+END MultiplyByAddition.

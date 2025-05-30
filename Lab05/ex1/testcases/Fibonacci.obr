@@ -1,0 +1,18 @@
+MODULE Fibonacci;
+
+VAR
+  n, result: INTEGER;
+
+PROCEDURE Fib(x: INTEGER): INTEGER;
+BEGIN
+  IF x <= 1 THEN
+    RETURN x
+  ELSE
+    RETURN Fib(x - 1) + Fib(x - 2)
+  END
+END Fib;
+
+BEGIN
+  n := 6;
+  result := Fib(n)
+END Fibonacci.
